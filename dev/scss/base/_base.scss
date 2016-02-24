@@ -29,11 +29,11 @@ li {
 
 h1, h2, h3, h4, h5, h6,
 span {
-	font-family: $font-family--primary;
+	font-family: $font-family--header;
 }
 
 p {
-	font-family: $font-family--secondary;
+	font-family: $font-family--body;
 }
 //SET THE HEADING SIZES
 @each $heading, $size in $heading-list {

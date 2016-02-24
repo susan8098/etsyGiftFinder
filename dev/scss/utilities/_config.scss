@@ -5,12 +5,12 @@
 //==================================
 // FONT PRESETS
 //==================================
-$font-url--googleSans   : 'https://fonts.googleapis.com/css?family=Raleway';
-$font-url--googleSerif  : 'https://fonts.googleapis.com/css?family=Merriweather';
+$font-url--google   : 'https://fonts.googleapis.com/css?family=Playfair+Display:900,700|Vollkorn';
 
 
-@import url($font-url--googleSans);
-@import url($font-url--googleSerif);
+
+@import url($font-url--google);
+
 
 //Font Weight Presets
 $font-weight--thin       		 : 100;
@@ -20,12 +20,15 @@ $font-weight--bold       	 : 700;
 $font-weight--ultra-bold  : 900;
 
 //Font Stacks
-$font-family--primary: 'Raleway', sans-serif;
-$font-family--secondary: 'Merriweather', serif;
+$font-family--header: 'Playfair Display', serif;
+$font-family--body: 'Vollkorn', serif;
 
 //==================================
 // DESCRIPTIVE BASE COLORS
-//==================================
+
+$etsyBlue: #49a9c6;
+$etsyOrgane: #ec6333;
+$etsyGrey: #666666;
 
 
 //==================================
@@ -33,7 +36,7 @@ $font-family--secondary: 'Merriweather', serif;
 //==================================
 $white       : #FFF;
 $black       : #000;
-$grey        : #616161; 
+$grey        : #dcdcd8; 
 
 
 // Text
