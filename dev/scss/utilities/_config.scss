@@ -5,39 +5,38 @@
 //==================================
 // FONT PRESETS
 //==================================
-$font-url--googleSans   : 'https://fonts.googleapis.com/css?family=Raleway';
-$font-url--googleSerif  : 'https://fonts.googleapis.com/css?family=Merriweather';
 
 
-@import url($font-url--googleSans);
-@import url($font-url--googleSerif);
+@import url($font-url--googleHeader);
+@import url($font-url--googleBody);
 
 //Font Weight Presets
 $font-weight--thin       		 : 100;
 $font-weight--light      		 : 300;
 $font-weight--medium     : 400;
-$font-weight--bold       	 : 700;
-$font-weight--ultra-bold  : 900;
+$font-weight--bold       	 	 : 700;
+$font-weight--ultra-bold   : 900;
 
 //Font Stacks
-$font-family--primary: 'Raleway', sans-serif;
-$font-family--secondary: 'Merriweather', serif;
+$font-family--header		: 'Playfair Display', sans-serif;
+$font-family--body			: 'Vollkorn', sans-serif;
 
 //==================================
 // DESCRIPTIVE BASE COLORS
 //==================================
-
+$etsyBlue			: #49a9c6;
+$etsyOrange		: #EC6333;
+$etsyGray			: #666666;
 
 //==================================
 // COLOR USAGE
 //==================================
 $white       : #FFF;
 $black       : #000;
-$grey        : #616161; 
+$grey        : #dcdcd8; 
 
 
 // Text
-
 $base__font-size : 1.6rem;
 $base__line      	  : 2.4rem;
 $letter-space        : 0.1rem;
@@ -60,16 +59,13 @@ $heading-list: (
 
 
 // Border radius
-
 $br--default    : .4em;
 $br--round      : 50%;
 
 // Transitions
-
 $trns-duration  : .3s;
 
 // Path to Assets
-
 $path--rel      : "../assets";
 
 //max-width
