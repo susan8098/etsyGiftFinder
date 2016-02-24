@@ -3,6 +3,7 @@
 //************************************************************************
 //								DOCUMENT READY
 //************************************************************************
+
 $(function () {
 	etsyApp.init();
 });
@@ -10,7 +11,7 @@ $(function () {
 //************************************************************************
 //							ETSY OBJECT		
 //************************************************************************
-etsyApp = {};
+var etsyApp = {};
 
 etsyApp.apiKey = 'ao3boag2j9soanucuqyhk53i';
 etsyApp.url = 'https://openapi.etsy.com/v2';
@@ -21,7 +22,7 @@ etsyApp.categories = {
 		keywords: ["Audio", "Cameras", "Gadgets", "Decals and Skins", "Cumputers & Peripherals", "Video Games"]
 	},
 	home: {
-		keywords: ["Painting", "Photography", "Sculpture", "Candlemaking Supplies", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "Outdoor & Gardening"]
+		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "Outdoor & Gardening"]
 	},
 	apparel: {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks", "messenger bags", "wallets", "hair care", "spa & relaxation"]
@@ -31,12 +32,35 @@ etsyApp.categories = {
 	}
 };
 
-estyApp.getEtsyItems = function () {};
+etsyApp.location = "Toronto";
 
-etsyApp.playerSearchObject = [];
+//results from the quiz pushed into  this object array
+etsyApp.playerSearchObject = ["candles", "mittens", "video games"];
 
-estyApp.init = function () {
-	estyApp.getEtsyItems();
+etsyApp.getEtsyItems = function () {
+	$.each(etsyApp.playerSearchObject, function (i, keyword) {
+		$.ajax({
+			url: 'http://proxy.hackeryou.com',
+			method: "GET",
+			dataType: "json",
+			data: {
+				reqUrl: etsyApp.url + "/listings/active",
+				params: {
+					format: "json",
+					api_key: etsyApp.apiKey,
+					findAllListingsActive: "toronto",
+					limit: 50,
+					tags: keyword
+				}
+			}
+		}).then(function (data) {
+			console.log(data);
+		});
+	});
+};
+
+etsyApp.init = function () {
+	etsyApp.getEtsyItems();
 };
 
 // On click, apply the class selected, grab the data of the class selected
