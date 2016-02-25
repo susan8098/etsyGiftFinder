@@ -14,29 +14,102 @@
  	</head>
 
  	<body>
+
+
  		<header>
- 			<div class="header-text">
+ 			<div class="wrapper">
 
-				<div class="header-text-title">
- 					<h1>RP<span>GIFT</span></h1>
- 					<h3>Role Playing Etsy Gift Finder</h3>
-				</div>
-				<div class="header-text-descript">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aut, officia! Similique iusto assumenda, incidunt neque nemo et doloribus deleniti porro mollitia molestiae, libero earum nihil a. Quam, aliquam, numquam!</p>
-				</div>
+	 			<div class="header-text">
+					<div class="header-text-title">
+	 					<h1>RP<span>GIFT</span></h1>
+	 					<h3>Role Playing Etsy Gift Finder</h3>
+					</div>
+					<div class="header-text-descript">
+						<p>Welcome to the role playing gift finder! Determine the perfect gift for anyone in your life by allowing you to slip into their shoes while you set out on an immersive gift finding adventure!</p>
+					</div>
+	 			</div>
+	 			
+	 			<form class="form-start">
+	 				<label for="name">Who are you getting a gift for?</label>
+	 				<input type="text" id="name">
+
+	 				<label for="location">Show me local products from...</label>
+	 				<input type="text" id="location">
+
+	 				<input type="submit" value="Let's Start" class="input-submit-start">
+	 			</form>
+
  			</div>
- 			
- 			<form class="input-start">
- 				<label for="name">Who are you getting a gift for?</label>
- 				<input type="text" id="name">
-
- 				<label for="location">Show me local products from...</label>
- 				<input type="text" id="location">
-
- 				<input type="submit" value="Find">
- 			</form>
  		</header>
+		
+		<!-- Question 1 -->
+		<section class="question1">
+			<div class="wrapper">
+				<p><span class="reciName"></span>'s bags are packed, ticket in hand, ready for an ideal vacation. <span class="reciName"></span>, of course, is going to be:</p>
 
+				<div class="options">
+					<label for="q1-A">
+					Live tweeting a tech conference from Silicon Valley.
+					</label>
+					<input type="radio" id="q1-A" name="question1" value="tech">
+
+					<label for="q1-B">
+					Sightseeing by the Eiffel Tower for Paris Fashion Week.
+					</label>
+					<input type="radio" id="q1-B" name="question1" value="fashion">
+
+					<label for="q1-C">
+					A B&B out in the countryside.
+					</label>
+					<input type="radio" id="q1-C" name="question1" value="home">
+
+					<label for="q1-D">
+					San Diego for Comic Con, possibly cosplaying in full Starfleet regalia. 
+					</label>
+					<input type="radio" id="q1-D" name="question1" value="leisure">
+				</div>
+				
+			</div>
+		</section>
+		
+		<!-- Question 2 -->
+		<section class="question1">
+			<div class="wrapper">
+				<p>{{}}'s bags are packed, ticket in hand, ready for an ideal vacation. {{}}, of course, is going to be:</p>
+				
+			</div>
+		</section>
+
+		<!-- Question 3 -->
+		<section class="question1">
+			<div class="wrapper">
+				<p>What book would {{}} have packed for reading on the flight?</p>
+				
+			</div>
+		</section>
+
+		<!-- Question 4 -->
+		<section class="question1">
+			<div class="wrapper">
+				<p>There’s a huge party to welcome new tourists, which encourages partygoers to wear their favourite colour. What colour shirt does {{}} choose?</p>
+				
+			</div>
+		</section>
+
+		<!-- Question 5 -->
+		<section class="question1">
+			<div class="wrapper">
+				<p>{{}} shows up to the tourist welcome party and the theme is a personal favourite:</p>
+				
+			</div>
+		</section>
+
+
+		<!-- Submit Answers -->
+		<form action="" class="form-submit-answers">
+			<input type="text" class="submit-answers" value="Find me Gifts!">
+		</form>
+		
 
  		<footer>
  		</footer>
@@ -50,7 +123,22 @@
 
 		<!-- Main JS file -->
  		<script src="/js/main.js"></script>
-
+		
+		<!-- Handlebar Template -->
+		<script id="itemTemplate"type="x-handlebars-template">
+			<a href="{{shopUrl}}">
+				<div class="itemContainer">
+					<div class="imgContainer">
+						<img src="{{image}}" alt="">
+					</div>
+					<div class="infoContainer">
+						<h4>{{title}}</h4>
+						<p>{{price}}</p>
+					</div>
+					</div>
+				</div>
+			</a>
+		</script>
 
  	</body>
  </html>
