@@ -2,23 +2,23 @@
 // We make an object including the 4 categories object,
 // within the object, we have an array of keywords
 
-var categories = {
-	tech: {
-		keywords: ["",]
-	}
+// var categories = {
+// 	tech: {
+// 		keywords: []
+// 	}
 
-	home: {
-		keywords: []
-	}
+// 	home: {
+// 		keywords: []
+// 	}
 
-	apparel: {
-		keywords: []
-	}
+// 	apparel: {
+// 		keywords: []
+// 	}
 
-	leisure: {
-		keywords: []
-	}
-}
+// 	leisure: {
+// 		keywords: []
+// 	}
+// }
 
 // On click, apply the class selected, grab the data of the class selected
 

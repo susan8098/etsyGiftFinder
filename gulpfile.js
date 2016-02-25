@@ -19,8 +19,8 @@ gulp.task('styles', () => {
 	return gulp.src(path.srcSCSS)
 	    .pipe(sass().on('error', sass.logError))
 	    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-	    .pipe(concat('style.css'))
-	    .pipe(gulp.dest(distCSS))
+	    .pipe(concat('main.css'))
+	    .pipe(gulp.dest(path.distCSS))
 	    .pipe(reload({stream: true}));
 });
 
@@ -31,17 +31,17 @@ gulp.task('browser-sync', () => {
 });
 
 gulp.task('scripts', () => {
-	gulp.src(srcJS)
+	gulp.src(path.srcJS)
     .pipe(babel({
       presets: ['es2015']
     }))
-    .pipe(gulp.dest(distJS))
+    .pipe(gulp.dest(path.distJS))
     .pipe(reload({stream: true}));
 });
 
 gulp.task('watch', () => {
-	gulp.watch(srcSCSS, ['styles']);
-	gulp.watch(srcJS, ['scripts']);
+	gulp.watch(path.srcSCSS, ['styles']);
+	gulp.watch(path.srcJS, ['scripts']);
 	gulp.watch('./public/*.html', reload);
 });
 
