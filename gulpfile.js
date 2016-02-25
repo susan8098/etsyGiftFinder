@@ -12,7 +12,8 @@ const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const autoprefixer = require('gulp-autoprefixer');
-const browserSync = require ('browser-sync');
+const browserSync = require('browser-sync');
+const sourcemaps = require('gulp-sourcemaps');
 const reload = browserSync.reload;
 const sourcemaps = require('gulp-sourcemaps');
 
