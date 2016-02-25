@@ -16,6 +16,9 @@ var etsyApp = {};
 etsyApp.apiKey = 'ao3boag2j9soanucuqyhk53i';
 etsyApp.url = 'https://openapi.etsy.com/v2';
 
+etsyApp.userName;
+etsyApp.userLocation;
+
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
 etsyApp.categories = {
 	tech: {
@@ -93,11 +96,6 @@ etsyApp.displayItems = function () {
 				var image = response.results[0].url_fullxfull;
 				var price = chosenItem.price;
 				var shopUrl = chosenItem.url;
-				console.log(title);
-				console.log(image);
-				console.log(price);
-				console.log(shopUrl);
-
 				//run the template
 			}); //end of ajax call
 			//delete the item from the array
