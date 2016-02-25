@@ -33,10 +33,9 @@ etsyApp.categories = {
 etsyApp.location = "Toronto";
 
 //results from the quiz pushed into  this object array
-etsyApp.playerSearchObject = ["candles"];
+etsyApp.playerSearchObject = ["candles", "anklets", "cats"];
 
 etsyApp.results = [];
-etsyApp.chosenItems = [];
 
 etsyApp.getEtsyItems = function() {
 		$.each(etsyApp.playerSearchObject, function(i, keyword) { 
@@ -62,23 +61,54 @@ etsyApp.getEtsyItems = function() {
 }
 
 //on form submit
+etsyApp.displayItems = function() {
+	$('.input-start').on('submit', function(e) {
+		//grab three items from each array random
+		e.preventDefault();
 
-$('.input-start').on('submit', function(e) {
-	//grab three items from each array random
-	e.preventDefault();
-	$.each(etsyApp.results, function(i, array) {
-		var randomNumber = Math.floor(Math.random() * array.length);
-		var returnResult = array[randomNumber];
-		etsyApp.results[i].splice(randomNumber, 1);
-		console.log(randomNumber);
-		console.log(returnResult);
-		//for loop that checks all the items in the existing array
-		etsyApp.chosenItems.push(returnResult);
-	}); //end of each
-}); //end of on submit
+		//for each array in etsyApp.results
+		$.each(etsyApp.results, function(i, array) {
+			//create a random number
+			var randomNumber = Math.floor(Math.random() * array.length);
+			//choose an item using that random number
+			var chosenItem = array[randomNumber];
+			console.log(chosenItem);
+			//get the image for the chosen item
+			var chosenItemImage = $.ajax({
+				url:  'http://proxy.hackeryou.com',
+				method: "GET",
+				dataType: "json",
+				data: {
+					reqUrl: etsyApp.url + "/listings/" + chosenItem.listing_id + "/images",
+					params: {
+						format: "json",
+						api_key: etsyApp.apiKey,
+					}
+				}
+			}).then(function(response){ 
+				// console.log(response.results);
+				var title = chosenItem.title;
+				var image = response.results[0].url_fullxfull;
+				var price = chosenItem.price;
+				var shopUrl = chosenItem.url;
+				console.log(title);
+				console.log(image);
+				console.log(price);
+				console.log(shopUrl);
 
+			//run the template
+
+
+			}); //end of ajax call
+			//delete the item from the array
+			etsyApp.results[i].splice(randomNumber, 1);
+		}); //end of each
+
+	}); //end of on submit
+}
 etsyApp.init = function() {
 	etsyApp.getEtsyItems();
+	etsyApp.displayItems();
 }
 
 // On click, apply the class selected, grab the data of the class selected
