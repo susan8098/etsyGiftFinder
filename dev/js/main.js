@@ -26,14 +26,17 @@ etsyApp.categories = {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks","messenger bags", "wallets", "hair care", "spa & relaxation"]
 	},
 	leisure: {
-		keywords: ["drawing", "prints", "Drawing", "spa", "skin care", "collectibles", "movies", "books"]
+		keywords: ["drawing", "prints", "Drawings", "spa", "skin care", "collectibles", "movies", "books"]
 	}
 }
 
 etsyApp.location = "Toronto";
 
 //results from the quiz pushed into  this object array
-etsyApp.playerSearchObject = ["candles", "mittens", "video games"];
+etsyApp.playerSearchObject = ["candles"];
+
+etsyApp.results = [];
+etsyApp.chosenItems = [];
 
 etsyApp.getEtsyItems = function() {
 		$.each(etsyApp.playerSearchObject, function(i, keyword) { 
@@ -51,12 +54,28 @@ etsyApp.getEtsyItems = function() {
 						tags: keyword
 					}
 				}
-			}).then(function(data) {
-				console.log(data);
+			}).then(function(response) {
+				var items = response.results;
+				etsyApp.results.push(items);
 			});
 		});
 }
 
+//on form submit
+
+$('.input-start').on('submit', function(e) {
+	//grab three items from each array random
+	e.preventDefault();
+	$.each(etsyApp.results, function(i, array) {
+		var randomNumber = Math.floor(Math.random() * array.length);
+		var returnResult = array[randomNumber];
+		etsyApp.results[i].splice(randomNumber, 1);
+		console.log(randomNumber);
+		console.log(returnResult);
+		//for loop that checks all the items in the existing array
+		etsyApp.chosenItems.push(returnResult);
+	}); //end of each
+}); //end of on submit
 
 etsyApp.init = function() {
 	etsyApp.getEtsyItems();
