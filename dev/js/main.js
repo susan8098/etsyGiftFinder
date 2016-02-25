@@ -1,7 +1,6 @@
 //************************************************************************
 //								DOCUMENT READY
 //************************************************************************
-
 $(function() {
 	etsyApp.init();
 });	
@@ -36,7 +35,7 @@ etsyApp.categories = {
 etsyApp.location = "Toronto";
 
 //results from the quiz pushed into  this object array
-etsyApp.playerSearchObject = ["candles", "anklets", "cats"];
+etsyApp.playerSearchObject = ["candles", "anklets", "cats", "stone", "eyewear"];
 
 etsyApp.results = [];
 
@@ -68,13 +67,16 @@ etsyApp.displayItems = function() {
 	$('.input-start').on('submit', function(e) {
 		//grab three items from each array random
 		e.preventDefault();
-
+		var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length),
+																	Math.floor(Math.random() * etsyApp.playerSearchObject.length),
+																	Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+		console.log(randomNumberArray);
 		//for each array in etsyApp.results
-		$.each(etsyApp.results, function(i, array) {
+		$.each(randomNumberArray, function(i, number) {
 			//create a random number
-			var randomNumber = Math.floor(Math.random() * array.length);
+			var randomNumber = Math.floor(Math.random() * etsyApp.results[number].length);
 			//choose an item using that random number
-			var chosenItem = array[randomNumber];
+			var chosenItem = etsyApp.results[number][randomNumber];
 			console.log(chosenItem);
 			//get the image for the chosen item
 			var chosenItemImage = $.ajax({
@@ -95,10 +97,9 @@ etsyApp.displayItems = function() {
 				var price = chosenItem.price;
 				var shopUrl = chosenItem.url;
 			//run the template
-
 			}); //end of ajax call
 			//delete the item from the array
-			etsyApp.results[i].splice(randomNumber, 1);
+			etsyApp.results[number].splice(randomNumber, 1);
 		}); //end of each
 
 	}); //end of on submit
