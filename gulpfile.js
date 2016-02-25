@@ -2,7 +2,7 @@
 
 var path = {
 	srcJS: "./dev/js/main.js",
-	srcSCSS: "./dev/scss/main.scss",
+	srcSCSS: "./dev/scss/**/*.scss",
 	distCSS: "./public/css/",
 	distJS: "./public/js/"
 }
@@ -14,12 +14,15 @@ const babel = require('gulp-babel');
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require ('browser-sync');
 const reload = browserSync.reload;
+const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles', () => {
 	return gulp.src(path.srcSCSS)
+		.pipe(sourcemaps.init())
 	    .pipe(sass().on('error', sass.logError))
 	    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
 	    .pipe(concat('main.css'))
+	    .pipe(sourcemaps.write('.'))
 	    .pipe(gulp.dest(path.distCSS))
 	    .pipe(reload({stream: true}));
 });
@@ -32,9 +35,11 @@ gulp.task('browser-sync', () => {
 
 gulp.task('scripts', () => {
 	gulp.src(path.srcJS)
+	.pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
     }))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(path.distJS))
     .pipe(reload({stream: true}));
 });
