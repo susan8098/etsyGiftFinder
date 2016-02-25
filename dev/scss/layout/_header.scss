@@ -1,12 +1,40 @@
 header {
 	height: 100vh;
+
+	.wrapper {
+		height: 100vh;
+		display: flex;
+		flex-flow: column wrap;
+	}
 }
 
 .header-text {
 	display: flex;
 	flex-flow: row wrap;
+<<<<<<< HEAD
 	color: red;
+=======
+	justify-content: space-between;
+
+	h1 {
+		margin: 0;
+		color: $etsyOrange;
+	}
+
+	h3 {
+		margin: 0;
+	}
+
+>>>>>>> 6c2c28cd00ede1feeea262c1c556db94b8cd8840
 	.header-text-title, .header-text-descript {
 		width: 50%;
 	}
+
+	.header-text-descript {
+		text-align: justify;
+	}
+}
+
+form.form-start {
+	margin: auto;
 }
