@@ -15,5 +15,13 @@
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-sass": "^2.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GarrettLevine/etsyGiftFinder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GarrettLevine/etsyGiftFinder/issues"
+  },
+  "homepage": "https://github.com/GarrettLevine/etsyGiftFinder#readme"
 }
