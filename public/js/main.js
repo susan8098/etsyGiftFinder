@@ -99,9 +99,5 @@ etsyApp.init = function () {
 // request ajax results from the selected choice array
 // pass in location data
 
-
-// display results
-
-
 // display results
 

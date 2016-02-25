@@ -7,6 +7,7 @@
 //==================================
 $font-url--google   : 'https://fonts.googleapis.com/css?family=Playfair+Display:900,700|Vollkorn';
 
+
 @import url($font-url--google);
 
 
@@ -47,12 +48,9 @@ $grey        : #dcdcd8;
 
 
 // Text
-<<<<<<< HEAD
-
 $base__font-size : 1.8rem;
-=======
 $base__font-size : 1.6rem;
->>>>>>> e8a7dd2d1ffc6c7549bb23d2c7e71d73b308577e
+
 $base__line      	  : 2.4rem;
 $letter-space        : 0.1rem;
 
