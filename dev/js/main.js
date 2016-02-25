@@ -1,24 +1,66 @@
+//************************************************************************
+//								DOCUMENT READY
+//************************************************************************
+
+$(function() {
+	etsyApp.init();
+});	
+
+//************************************************************************
+//							ETSY OBJECT		
+//************************************************************************
+var etsyApp = {};
+
+etsyApp.apiKey = 'ao3boag2j9soanucuqyhk53i';
+etsyApp.url = 'https://openapi.etsy.com/v2';
+
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
-// We make an object including the 4 categories object,
-// within the object, we have an array of keywords
+etsyApp.categories = {
+	tech: {
+		keywords: ["Audio","Cameras","Gadgets","Decals and Skins","Cumputers & Peripherals","Video Games"]
+	},
+	home: {
+		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "Outdoor & Gardening"]
+	},
+	apparel: {
+		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks","messenger bags", "wallets", "hair care", "spa & relaxation"]
+	},
+	leisure: {
+		keywords: ["drawing", "prints", "Drawing", "spa", "skin care", "collectibles", "movies", "books"]
+	}
+}
 
-// var categories = {
-// 	tech: {
-// 		keywords: []
-// 	}
+etsyApp.location = "Toronto";
 
-// 	home: {
-// 		keywords: []
-// 	}
+//results from the quiz pushed into  this object array
+etsyApp.playerSearchObject = ["candles", "mittens", "video games"];
 
-// 	apparel: {
-// 		keywords: []
-// 	}
+etsyApp.getEtsyItems = function() {
+		$.each(etsyApp.playerSearchObject, function(i, keyword) { 
+			$.ajax({
+				url: 'http://proxy.hackeryou.com',
+				method: "GET",
+				dataType: "json",
+				data: {
+					reqUrl:  etsyApp.url + "/listings/active",
+					params: {
+						format: "json",
+						api_key: etsyApp.apiKey,
+						findAllListingsActive: "toronto",
+						limit: 50,
+						tags: keyword
+					}
+				}
+			}).then(function(data) {
+				console.log(data);
+			});
+		});
+}
 
-// 	leisure: {
-// 		keywords: []
-// 	}
-// }
+
+etsyApp.init = function() {
+	etsyApp.getEtsyItems();
+}
 
 // On click, apply the class selected, grab the data of the class selected
 

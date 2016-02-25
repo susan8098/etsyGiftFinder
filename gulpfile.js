@@ -4,7 +4,7 @@ var path = {
 	srcJS: "./dev/js/main.js",
 	srcSCSS: "./dev/scss/main.scss",
 	distCSS: "./public/css/",
-	distJS: "./public/js"
+	distJS: "./public/js/"
 }
 
 const gulp = require('gulp');
