@@ -96,7 +96,7 @@ etsyApp.displayItems = function() {
 				var image = response.results[0].url_fullxfull;
 				var price = chosenItem.price;
 				var shopUrl = chosenItem.url;
-			//run the template
+				//run the template
 			}); //end of ajax call
 			//delete the item from the array
 			etsyApp.results[number].splice(randomNumber, 1);
