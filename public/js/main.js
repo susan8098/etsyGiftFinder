@@ -1,26 +1,3 @@
-
-// We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
-// We make an object including the 4 categories object,
-// within the object, we have an array of keywords
-
-// var categories = {
-// 	tech: {
-// 		keywords: []
-// 	}
-
-// 	home: {
-// 		keywords: []
-// 	}
-
-// 	apparel: {
-// 		keywords: []
-// 	}
-
-// 	leisure: {
-// 		keywords: []
-// 	}
-// }
-
 'use strict';
 
 //************************************************************************
@@ -86,7 +63,6 @@ etsyApp.init = function () {
 	etsyApp.getEtsyItems();
 };
 
-
 // On click, apply the class selected, grab the data of the class selected
 
 // Use selected data to roll a result on the corresponding array
@@ -100,4 +76,3 @@ etsyApp.init = function () {
 // pass in location data
 
 // display results
-
