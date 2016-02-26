@@ -4,6 +4,10 @@ header {
 		display: flex;
 		flex-flow: column wrap;
 		padding: 0 1rem;
+
+		@include mq(small) {
+			padding-bottom: 3rem;
+		}
 	}
 }
 
@@ -88,6 +92,8 @@ header {
 
 	@include mq(small) {
 		width: 100%;
+		height: 5rem;
+		font-size: 2.5rem;
 	}
 
 
@@ -105,6 +111,10 @@ label[class^='avatarOption'] {
 	@include size( 23rem);
 	background: $white;
 	border-radius: 50%;
+
+	@include mq(small) {
+		@include size(18rem);
+	}
 }
 
 .avatarOption1 {
