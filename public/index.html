@@ -12,14 +12,12 @@
  	</head>
 
  	<body>
-
-
  		<header>
  			<div class="wrapper">
 
 	 			<div class="header-text">
 					<div class="header-text-title">
-	 					<h1>RP<span>GIFT</span></h1>
+	 					<h1>RP<span class="text-color-blue">GIFT</span></h1>
 	 					<h3>Role Playing Etsy Gift Finder</h3>
 					</div>
 					<div class="header-text-descript">
@@ -28,13 +26,28 @@
 	 			</div>
 	 			
 	 			<form class="form-start">
-	 				<label for="name">Who are you getting a gift for?</label>
-	 				<input type="text" id="name">
+	 				<div class="form-start-questionContainer">
+		 				<fieldset class="startForm-fieldset">
+			 				<label for="name">Gift Getter's Name...</label>
+			 				<input class="input-playerName" type="text" id="name">
+						</fieldset>
 
-	 				<label for="location">Show me local products from...</label>
-	 				<input type="text" id="location">
+						<fieldset class="startForm-fieldset">
+			 				<label for="location">Gift Getter's City...</label>
+			 				<input class="input-playerCity" type="text" id="location">
+						</fieldset>
+					</div>
 
-	 				<input type="submit" value="Let's Start" class="input-submit-start">
+					<div class="startForm-avatarContainer">
+						<label for="avatar1" class="avatarOption1">	
+						</label>
+						<input type="radio" id="avatar1">
+						<label for="avatar2" class="avatarOption2">
+						</label>
+						<input type="radio" id="avatar2">
+					</div>
+
+	 				<input type="submit" value="PLAY" class="input-submit-start">
 	 			</form>
 
  			</div>
