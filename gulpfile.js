@@ -5,7 +5,7 @@ var path = {
 	srcSCSS: "./dev/scss/**/*.scss",
 	distCSS: "./public/css/",
 	distJS: "./public/js/"
-}
+} 
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
@@ -15,7 +15,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require ('browser-sync');
 const sourcemaps = require('gulp-sourcemaps');
 const reload = browserSync.reload;
-const sourcemaps = require('gulp-sourcemaps');
+
 
 gulp.task('styles', () => {
 	return gulp.src(path.srcSCSS)

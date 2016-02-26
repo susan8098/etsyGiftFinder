@@ -9,8 +9,6 @@
 		
 		<!-- Stylesheet -->
  		<link rel="stylesheet" href="css/main.css" type="text/css">
-		
- 		
  	</head>
 
  	<body>
@@ -34,7 +32,7 @@
 	 				<input type="text" id="name">
 
 	 				<label for="location">Show me local products from...</label>
-	 				<input type="text" id="location">
+	 				<input type="text" id="location" placeholder="Toronto, ON">
 
 	 				<input type="submit" value="Let's Start" class="input-submit-start">
 	 			</form>
@@ -43,72 +41,307 @@
  		</header>
 		
 		<!-- Question 1 -->
-		<section class="question1">
+		<section class="question question1">
 			<div class="wrapper">
 				<p><span class="reciName"></span>'s bags are packed, ticket in hand, ready for an ideal vacation. <span class="reciName"></span>, of course, is going to be:</p>
-
+				
 				<div class="options">
 					<label for="q1-A">
-					Live tweeting a tech conference from Silicon Valley.
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Live tweeting a tech conference from Silicon Valley</p>
+							</div>
+						</div>
 					</label>
 					<input type="radio" id="q1-A" name="question1" value="tech">
-
+			
 					<label for="q1-B">
-					Sightseeing by the Eiffel Tower for Paris Fashion Week.
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Sightseeing by the Eiffel Tower for Paris Fashion Week</p>
+							</div>
+						</div>
 					</label>
 					<input type="radio" id="q1-B" name="question1" value="fashion">
 
 					<label for="q1-C">
-					A B&B out in the countryside.
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p> A B&B out in the countryside.</p>
+							</div>
+						</div>
 					</label>
 					<input type="radio" id="q1-C" name="question1" value="home">
 
 					<label for="q1-D">
-					San Diego for Comic Con, possibly cosplaying in full Starfleet regalia. 
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>San Diego for Comic Con, possibly cosplaying in full Starfleet regalia. </p>
+							</div>
+						</div> 
 					</label>
 					<input type="radio" id="q1-D" name="question1" value="leisure">
 				</div>
-				
 			</div>
+
 		</section>
 		
 		<!-- Question 2 -->
-		<section class="question1">
+		<section class="question question2">
 			<div class="wrapper">
-				<p>{{}}'s bags are packed, ticket in hand, ready for an ideal vacation. {{}}, of course, is going to be:</p>
+				<p>Uh oh! Looks like <span class="reciName"></span> forgot to set the clock and there’s just enough time to grab one thing before making a break for the airport:</p>
 				
+				<div class="options">
+					<label for="q2-A">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A laptop!</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q2-A" name="question1" value="tech">
+				
+					<label for="q2-B">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>An old sketchbook!</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q2-B" name="question1" value="leisure">
+
+					<label for="q2-C">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A favourite sweater!</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q2-C" name="question1" value="fashion">
+
+					<label for="q2-D">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A camera! Those photos are going to look great hanging on the wall. </p>
+							</div>
+						</div> 
+					</label>
+					<input type="radio" id="q2-D" name="question1" value="home">
+				</div>
+
 			</div>
 		</section>
 
 		<!-- Question 3 -->
-		<section class="question1">
+		<section class="question question3">
 			<div class="wrapper">
-				<p>What book would {{}} have packed for reading on the flight?</p>
+				<p>What book would <span class="reciName"></span> have packed for reading on the flight?</p>
+				
+				<div class="options">
+					<label for="q3-A">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Anything by Martha Stewart</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q3-A" name="question1" value="home">
+				
+					<label for="q3-B">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Androids Dream of Electric Sheep, Philip K. Dick</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q3-B" name="question1" value="tech">
+
+					<label for="q3-C">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Vogue and GQ</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q3-C" name="question1" value="fashion">
+
+					<label for="q3-D">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A New York Times crossword collection</p>
+							</div>
+						</div> 
+					</label>
+					<input type="radio" id="q3-D" name="question1" value="leisure">
+				</div>
 				
 			</div>
 		</section>
 
 		<!-- Question 4 -->
-		<section class="question1">
+		<section class="qusetion question4">
 			<div class="wrapper">
-				<p>There’s a huge party to welcome new tourists, which encourages partygoers to wear their favourite colour. What colour shirt does {{}} choose?</p>
+				<p>There’s a huge party to welcome new tourists, which encourages partygoers to wear their favourite colour. What colour shirt does <span class="reciName"></span> choose?</p>
+
+				<div class="options">
+					<label for="q4-A">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Grey</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q4-A" name="question1" value="tech">
 				
+					<label for="q4-B">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Brown</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q4-B" name="question1" value="home">
+
+					<label for="q4-C">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Orange</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q4-C" name="question1" value="leisure">
+
+					<label for="q4-D">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>Red</p>
+							</div>
+						</div> 
+					</label>
+					<input type="radio" id="q4-D" name="question1" value="fashion">
+				</div>
+
 			</div>
 		</section>
 
 		<!-- Question 5 -->
-		<section class="question1">
+		<section class="question question5">
 			<div class="wrapper">
-				<p>{{}} shows up to the tourist welcome party and the theme is a personal favourite:</p>
+				<p><span class="reciName"></span> shows up to the tourist welcome party and the theme is a personal favourite:</p>
 				
+				
+				<div class="options">
+					<label for="q5-A">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A LAN party! Starcraft or Halo, depending on who logs in.</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q5-A" name="question1" value="tech">
+				
+					<label for="q5-B">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A stitch and bitch! DIY crafting and all the latest gossip.</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q5-B" name="question1" value="leisure">
+
+					<label for="q5-C">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A clothing swap! Clear out the closet and get a whole new wardrobe at the same time!</p>
+							</div>
+						</div>
+					</label>
+					<input type="radio" id="q5-C" name="question1" value="fashion">
+
+					<label for="q5-D">
+						<div class="square-answers">
+							<div class="answers-img-container">
+								<img src="http://unsplash.it/500/400" alt="">
+							</div>
+							<div class="answers-text">
+								<p>A house party! Why go out when you can make people come to you?</p>
+							</div>
+						</div> 
+					</label>
+					<input type="radio" id="q5-D" name="question1" value="home">
+				</div>
+
 			</div>
 		</section>
 
 
 		<!-- Submit Answers -->
-		<form action="" class="form-submit-answers">
-			<input type="text" class="submit-answers" value="Find me Gifts!">
-		</form>
+		<section class="submit">
+			<div class="wrapper">
+				<p>Congratulations, The adventure is over! <span class="reciName"></span> returns home tired from the trip, but is delighted to find one final surprise waiting on their doorstep from none other than you! What did you get for <span class="reciName"></span>?</p>
+				<form action="" class="form-submit-answers">
+					<input type="submit" class="submit-answers" value="Find me Gifts!">
+			</div>
+			</form>
+		</section>
+		
 		
 
  		<footer>
