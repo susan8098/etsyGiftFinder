@@ -15,6 +15,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require ('browser-sync');
 const sourcemaps = require('gulp-sourcemaps');
 const reload = browserSync.reload;
+const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles', () => {
 	return gulp.src(path.srcSCSS)
@@ -35,9 +36,11 @@ gulp.task('browser-sync', () => {
 
 gulp.task('scripts', () => {
 	gulp.src(path.srcJS)
+	.pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
     }))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(path.distJS))
     .pipe(reload({stream: true}));
 });
