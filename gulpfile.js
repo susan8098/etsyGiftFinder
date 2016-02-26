@@ -5,16 +5,16 @@ var path = {
 	srcSCSS: "./dev/scss/**/*.scss",
 	distCSS: "./public/css/",
 	distJS: "./public/js/"
-}
+} 
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const autoprefixer = require('gulp-autoprefixer');
-const browserSync = require ('browser-sync');
-const reload = browserSync.reload;
+const browserSync = require('browser-sync');
 const sourcemaps = require('gulp-sourcemaps');
+const reload = browserSync.reload;
 
 gulp.task('styles', () => {
 	return gulp.src(path.srcSCSS)
