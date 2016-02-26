@@ -13,8 +13,8 @@ var etsyApp = {};
 etsyApp.apiKey = 'ao3boag2j9soanucuqyhk53i';
 etsyApp.url = 'https://openapi.etsy.com/v2';
 
-etsyApp.userName;
-etsyApp.userLocation;
+etsyApp.userName = null;
+etsyApp.userLocation = null;
 
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
 etsyApp.categories = {
@@ -24,7 +24,7 @@ etsyApp.categories = {
 	home: {
 		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "Outdoor & Gardening"]
 	},
-	apparel: {
+	fashion: {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks","messenger bags", "wallets", "hair care", "spa & relaxation"]
 	},
 	leisure: {
@@ -32,10 +32,29 @@ etsyApp.categories = {
 	}
 }
 
+
+
+etsyApp.getUserName = function() {
+	$('.form-start').on('submit', function(e){
+		e.preventDefault();
+		console.log('form is firing');
+		// get the name of the recipient
+		etsyApp.userName = $('#name').val();
+		console.log(etsyApp.userName);
+
+		$('span.reciName').text(etsyApp.userName);
+
+		etsyApp.userLocation = $('#location').val();
+		console.log(etsyApp.userLocation);
+	})
+};
+
+
+
 etsyApp.location = "Toronto";
 
 //results from the quiz pushed into  this object array
-etsyApp.playerSearchObject = ["candles", "anklets", "cats", "stone", "eyewear"];
+etsyApp.playerSearchObject = [];
 
 etsyApp.results = [];
 
@@ -50,13 +69,14 @@ etsyApp.getEtsyItems = function() {
 					params: {
 						format: "json",
 						api_key: etsyApp.apiKey,
-						findAllListingsActive: "toronto",
+						location: etsyApp.userLocation,
 						limit: 50,
 						tags: keyword
 					}
 				}
 			}).then(function(response) {
 				var items = response.results;
+				console.log(response);
 				etsyApp.results.push(items);
 			});
 		});
@@ -64,12 +84,13 @@ etsyApp.getEtsyItems = function() {
 
 //on form submit
 etsyApp.displayItems = function() {
-	$('.input-start').on('submit', function(e) {
+	$('.form-submit-answers').on('submit', function(e) {
 		//grab three items from each array random
 		e.preventDefault();
+		etsyApp.getEtsyItems();
 		var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length),
-																	Math.floor(Math.random() * etsyApp.playerSearchObject.length),
-																	Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+								Math.floor(Math.random() * etsyApp.playerSearchObject.length),
+								Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
 		console.log(randomNumberArray);
 		//for each array in etsyApp.results
 		$.each(randomNumberArray, function(i, number) {
@@ -104,10 +125,31 @@ etsyApp.displayItems = function() {
 
 	}); //end of on submit
 }
+
+
+// when we click on radio option, grab the value
+// use that value to get a random keyword from the etsyApp cateogry object
+// push the keyword into player search object
+
+$('input[type=radio]').on('click', function() {
+	var selectedCategory = $(this).val();
+
+	var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
+
+	var randomKeyword = selectedKeywords[Math.floor(Math.random()* selectedKeywords.length)];
+
+	etsyApp.playerSearchObject.push(randomKeyword);
+	
+});
+
 etsyApp.init = function() {
-	etsyApp.getEtsyItems();
+	etsyApp.getUserName();
 	etsyApp.displayItems();
+
 }
+
+
+
 
 // On click, apply the class selected, grab the data of the class selected
 
