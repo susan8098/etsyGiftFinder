@@ -65,7 +65,7 @@ etsyApp.getEtsyItems = function() {
 				method: "GET",
 				dataType: "json",
 				data: {
-					reqUrl:  etsyApp.url + "/listings/active",
+					reqUrl:  etsyApp.url + "/featured_treasuries/listings",
 					params: {
 						format: "json",
 						api_key: etsyApp.apiKey,
@@ -84,6 +84,7 @@ etsyApp.getEtsyItems = function() {
 
 //on form submit
 etsyApp.displayItems = function() {
+
 	$('.form-submit-answers').on('submit', function(e) {
 		//grab three items from each array random
 		e.preventDefault();
@@ -117,13 +118,29 @@ etsyApp.displayItems = function() {
 				var image = response.results[0].url_fullxfull;
 				var price = chosenItem.price;
 				var shopUrl = chosenItem.url;
+
+				var resultCard = {
+					title: title,
+					image: image,
+					price: price,
+					shopUrl: shopUrl
+				};
+
 				//run the template
+				// ***** Handle Bar Template ***** 
+				var resultCardHtml = $('#itemTemplate').html();
+				var template = Handlebars.compile(resultCardHtml);
+
+				$('.resultContainer').append(template(resultCard));
+
+
 			}); //end of ajax call
 			//delete the item from the array
 			etsyApp.results[number].splice(randomNumber, 1);
 		}); //end of each
 
 	}); //end of on submit
+	
 }
 
 
