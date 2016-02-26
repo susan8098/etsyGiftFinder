@@ -1,0 +1,40 @@
+.question {
+
+	.wrapper {
+		height: 100vh;
+	}
+
+	input[type=radio] {
+		display: none;
+	}
+}
+
+.question1 {
+	background: $etsyOrange;
+}
+
+.options {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+
+	label {
+		width: 24%;
+	}
+}
+
+.square-answers {
+	margin-top: 30px;
+	width: 100%;
+	height: auto;
+	background: white;
+	padding: 10px;
+	box-shadow: 0 1px 3px grey;
+	text-align: center;
+
+	.answers-text {
+		height: 120px;
+	}
+}
+
+

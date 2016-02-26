@@ -5,7 +5,7 @@ var path = {
 	srcSCSS: "./dev/scss/**/*.scss",
 	distCSS: "./public/css/",
 	distJS: "./public/js/"
-}
+} 
 
 const gulp = require('gulp');
 const sass = require('gulp-sass');
@@ -18,7 +18,7 @@ const reload = browserSync.reload;
 
 gulp.task('styles', () => {
 	return gulp.src(path.srcSCSS)
-		 .pipe(sourcemaps.init())
+		.pipe(sourcemaps.init())
 	    .pipe(sass().on('error', sass.logError))
 	    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
 	    .pipe(concat('main.css'))
