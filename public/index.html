@@ -9,6 +9,23 @@
 		
 		<!-- Stylesheet -->
  		<link rel="stylesheet" href="css/main.css" type="text/css">
+
+ 		<!-- Handlebar Template -->
+ 		<script id="itemTemplate"type="x-handlebars-template">
+ 			<a href="{{shopUrl}}" target="blank">
+ 				<div class="itemContainer">
+ 					<div class="imgContainer">
+ 						<img src="{{image}}" alt="">
+ 					</div>
+ 					<div class="infoContainer">
+ 						<h4>{{title}}</h4>
+ 						<p>{{price}}</p>
+ 					</div>
+ 					</div>
+ 				</div>
+ 			</a>
+ 		</script>
+ 		
  	</head>
 
  	<body>
@@ -394,7 +411,11 @@
 			</div>
 			</form>
 		</section>
-		
+
+		<!-- Display Results -->
+		<section class="resultContainer">
+			
+		</section>
 		
 
  		<footer>
@@ -410,21 +431,7 @@
 		<!-- Main JS file -->
  		<script src="/js/main.js"></script>
 		
-		<!-- Handlebar Template -->
-		<script id="itemTemplate"type="x-handlebars-template">
-			<a href="{{shopUrl}}">
-				<div class="itemContainer">
-					<div class="imgContainer">
-						<img src="{{image}}" alt="">
-					</div>
-					<div class="infoContainer">
-						<h4>{{title}}</h4>
-						<p>{{price}}</p>
-					</div>
-					</div>
-				</div>
-			</a>
-		</script>
+		
 
  	</body>
  </html>
