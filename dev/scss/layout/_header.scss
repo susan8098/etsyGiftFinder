@@ -1,17 +1,25 @@
 header {
-	height: 100vh;
-
 	.wrapper {
-		height: 100vh;
+		margin: auto;
 		display: flex;
 		flex-flow: column wrap;
+		padding: 0 1rem;
 	}
+}
+
+.text-color-blue {
+	color: $etsyBlue;
 }
 
 .header-text {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
+	align-items: center;
+
+	@include mq(small) {
+		justify-content: column;
+	}
 
 	h1 {
 		margin: 0;
@@ -19,18 +27,120 @@ header {
 	}
 
 	h3 {
+		color: $etsyGray;
 		margin: 0;
 	}
 
 	.header-text-title, .header-text-descript {
 		width: 50%;
+
+		@include mq(small) {
+			width: 100%;
+		}
 	}
 
 	.header-text-descript {
 		text-align: justify;
+		color: $etsyGray;
 	}
 }
 
+.form-start-questionContainer {
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+
+	@include mq(small) {
+		flex-direction: column;
+	}
+}
+
+.startForm-avatarContainer {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 3rem;
+}
+
+.startForm-fieldset {
+	border: none;
+	position: relative;
+
+	@include mq(small) {
+		margin-top: 3rem;
+	}
+
+	label {
+		position: absolute;
+		top: -3rem;
+		font-size: 2.2rem;
+		color: $etsyGray;
+		font-family: $font-family--header;
+	}
+}
+
+.input-playerName,
+.input-playerCity {
+	@include size(38rem 7.5rem);
+	background: $grey;
+	border: 1px solid #DDDDDD;
+	font-size: 3.5rem;
+	padding-left: 3rem;
+
+	@include mq(small) {
+		width: 100%;
+	}
+
+
+	@include placeholder {
+		color: $etsyGray;
+	}
+
+	&:focus {
+		outline: none;
+		border: 1px solid transparentize($etsyOrange, 0.5);
+	}
+}
+
+label[class^='avatarOption'] {
+	@include size( 23rem);
+	background: $white;
+	border-radius: 50%;
+}
+
+.avatarOption1 {
+	border: 1.2rem solid $etsyOrange;
+}
+
+.avatarOption2 {
+	border: 1.2rem solid $etsyBlue;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
 form.form-start {
-	margin: auto;
+	width: 100%;
+	padding: 10rem 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	@include mq(small) {
+		padding: 0;
+	}
+}
+
+.input-submit-start {
+	@include size(22rem 6rem);
+	margin-top: 6rem;
+	font-size: 4rem;
+	color: $etsyBlue;
+	background-color: $grey;
+	border: 1px solid #dddddd;
+	align-self: flex-end;
+
+	@include mq(small) {
+		align-self: center;
+	}
 }
