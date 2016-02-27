@@ -9,11 +9,11 @@
 	background: $etsyBlue;
 }
 
-// @for $i from 1 through 6 {
-// 	.question#{$i} {
-// 		display: none;
-// 	}
-// }
+@for $i from 1 through 5 {
+	.question#{$i} {
+		display: none;
+	}
+}
 
 .question {
 	margin: 0;
