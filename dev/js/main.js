@@ -16,6 +16,10 @@ etsyApp.url = 'https://openapi.etsy.com/v2';
 etsyApp.userName = null;
 etsyApp.userLocation = null;
 
+//************************************************************************
+//							ETSY APP FUNCTIONS
+//************************************************************************
+
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
 etsyApp.categories = {
 	tech: {
@@ -32,33 +36,25 @@ etsyApp.categories = {
 	}
 }
 
-
-
 etsyApp.getUserName = function() {
-	$('.form-start').on('submit', function(e){
-		e.preventDefault();
-		console.log('form is firing');
 		// get the name of the recipient
 		etsyApp.userName = $('#name').val();
-		console.log(etsyApp.userName);
 
+		//place the username on the page where appropriate for the questions
 		$('span.reciName').text(etsyApp.userName);
 
-		etsyApp.userLocation = $('#location').val();
-		console.log(etsyApp.userLocation);
-	})
+		//get the location of the hand-made products to search for
+		etsyApp.userLocation = $('#location').val();	
+
 };
-
-
-
-etsyApp.location = "Toronto";
 
 //results from the quiz pushed into  this object array
 etsyApp.playerSearchObject = [];
 
+//etsy app array of items
 etsyApp.results = [];
 
-etsyApp.getEtsyItems = function() {
+etsyApp.getEtsyArrays = function() {
 		$.each(etsyApp.playerSearchObject, function(i, keyword) { 
 			$.ajax({
 				url: 'http://proxy.hackeryou.com',
@@ -76,109 +72,113 @@ etsyApp.getEtsyItems = function() {
 				}
 			}).then(function(response) {
 				var items = response.results;
-				console.log(response);
 				etsyApp.results.push(items);
+				etsyApp.createEtsyItems();
 			});
 		});
 }
 
-//on form submit
-etsyApp.displayItems = function() {
 
+etsyApp.createEtsyItems = function() {
+	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length),
+							Math.floor(Math.random() * etsyApp.playerSearchObject.length),
+							Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+	//for each array in etsyApp.results
+	$.each(randomNumberArray, function(i, number) {
+		//create a random number
+		var randomNumber = Math.floor(Math.random() * etsyApp.results[number].length);
+		//choose an item using that random number
+		var chosenItem = etsyApp.results[number][randomNumber];
+		console.log(chosenItem);
+		//get the image for the chosen item
+		var chosenItemImage = $.ajax({
+			url:  'http://proxy.hackeryou.com',
+			method: "GET",
+			dataType: "json",
+			data: {
+				reqUrl: etsyApp.url + "/listings/" + chosenItem.listing_id + "/images",
+				params: {
+					format: "json",
+					api_key: etsyApp.apiKey,
+				}
+			}
+		}).then(function(response){ 
+			etsyApp.displayItems(response, chosenItem);
+		}); //end of ajax call
+		//delete the item from the array
+		etsyApp.results[number].splice(randomNumber, 1);
+	}); //end of each
+
+}
+
+etsyApp.displayItems = function(response, chosenItem) {
+	var resultCard = {
+		title: chosenItem.title,
+		image: response.results[0].url_fullxfull,
+		price: chosenItem.price,
+		shopUrl: chosenItem.url
+	};
+	//run the template
+	// ***** Handle Bar Template ***** 
+	var resultCardHtml = $('#itemTemplate').html();
+	var template = Handlebars.compile(resultCardHtml);
+
+	$('.resultContainer .wrapper').append(template(resultCard) );
+}
+etsyApp.getKeywords = function(button) {
+		var selectedCategory = $(button).val();
+		var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
+		var randomKeyword = selectedKeywords[Math.floor(Math.random()* selectedKeywords.length)];
+		etsyApp.playerSearchObject.push(randomKeyword);
+};
+//************************************************************************
+//									INTERACTING WITH THE DOM
+//************************************************************************
+etsyApp.showQuestion = function () {
+	$('.question1').fadeIn("slow");
+}
+
+etsyApp.showNextQuestion = function(button) {
+	var desiredParent = $(button).parents(".question");
+	var desiredParentClass = (desiredParent[0].classList[1]);
+	var newQuestionNumber = ".question" + (parseInt(desiredParentClass[8]) + 1);
+	$(newQuestionNumber).fadeIn("slow");
+}
+
+//************************************************************************
+//									ON EVENT HANDLERS
+//************************************************************************
+//on form submit
+etsyApp.onSubmitAnswers= function() {
 	$('.form-submit-answers').on('submit', function(e) {
+		console.log("success!");
 		//grab three items from each array random
 		e.preventDefault();
-		etsyApp.getEtsyItems();
-		var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length),
-								Math.floor(Math.random() * etsyApp.playerSearchObject.length),
-								Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-		console.log(randomNumberArray);
-		//for each array in etsyApp.results
-		$.each(randomNumberArray, function(i, number) {
-			//create a random number
-			var randomNumber = Math.floor(Math.random() * etsyApp.results[number].length);
-			//choose an item using that random number
-			var chosenItem = etsyApp.results[number][randomNumber];
-			console.log(chosenItem);
-			//get the image for the chosen item
-			var chosenItemImage = $.ajax({
-				url:  'http://proxy.hackeryou.com',
-				method: "GET",
-				dataType: "json",
-				data: {
-					reqUrl: etsyApp.url + "/listings/" + chosenItem.listing_id + "/images",
-					params: {
-						format: "json",
-						api_key: etsyApp.apiKey,
-					}
-				}
-			}).then(function(response){ 
-				// console.log(response.results);
-				var title = chosenItem.title;
-				var image = response.results[0].url_fullxfull;
-				var price = chosenItem.price;
-				var shopUrl = chosenItem.url;
-
-				var resultCard = {
-					title: title,
-					image: image,
-					price: price,
-					shopUrl: shopUrl
-				};
-
-				//run the template
-				// ***** Handle Bar Template ***** 
-				var resultCardHtml = $('#itemTemplate').html();
-				var template = Handlebars.compile(resultCardHtml);
-
-				$('.resultContainer .wrapper').append(template(resultCard));
-
-
-			}); //end of ajax call
-			//delete the item from the array
-			etsyApp.results[number].splice(randomNumber, 1);
-		}); //end of each
-
+		etsyApp.getEtsyArrays();
 	}); //end of on submit
-	
+}
+etsyApp.onRadioClick = function() {
+	$('input[type=radio]').on('click', function() {
+
+		etsyApp.getKeywords(this);
+
+		etsyApp.showNextQuestion(this);
+	});
 }
 
+etsyApp.onFormStart = function() {
+	$('.form-start').on('submit', function(e) {
+		e.preventDefault();
+		etsyApp.getUserName();
+		etsyApp.showQuestion();
+	}); //end of submit
+}
 
-// when we click on radio option, grab the value
-// use that value to get a random keyword from the etsyApp cateogry object
-// push the keyword into player search object
-
-$('input[type=radio]').on('click', function() {
-	var selectedCategory = $(this).val();
-
-	var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
-
-	var randomKeyword = selectedKeywords[Math.floor(Math.random()* selectedKeywords.length)];
-
-	etsyApp.playerSearchObject.push(randomKeyword);
-	
-});
-
+//************************************************************************
+//									ETSY APP INIT FUNCTION
+//************************************************************************
 etsyApp.init = function() {
-	etsyApp.getUserName();
-	etsyApp.displayItems();
-
+	etsyApp.onFormStart();
+	etsyApp.onRadioClick();
+	etsyApp.onSubmitAnswers();
 }
-
-
-
-
-// On click, apply the class selected, grab the data of the class selected
-
-// Use selected data to roll a result on the corresponding array
-
-// push results into an selected choice array
-// if there is a repeated keyword, filter out the duplicate 
-
-// On submit location form, grab location data 
-
-// request ajax results from the selected choice array
-// pass in location data 
-
-// display results
-
