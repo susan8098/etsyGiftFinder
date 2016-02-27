@@ -127,7 +127,7 @@ etsyApp.displayItems = function () {
 				var resultCardHtml = $('#itemTemplate').html();
 				var template = Handlebars.compile(resultCardHtml);
 
-				$('.resultContainer').append(template(resultCard));
+				$('.resultContainer .wrapper').append(template(resultCard));
 			}); //end of ajax call
 			//delete the item from the array
 			etsyApp.results[number].splice(randomNumber, 1);
