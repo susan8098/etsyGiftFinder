@@ -1,4 +1,39 @@
+.resultContainer .wrapper {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
 
 .itemContainer {
 	width: 30%;
+	height: 460px;
+	background: $grey;
+	text-align: center;
+	padding: 10px;
+	box-shadow: 0 1px 3px lightgrey;
+
+	a {
+		color: $etsyGray;
+
+
+		.imgContainer {
+			background: white;
+			width: 100%;
+			height: 300px;
+			overflow: hidden;
+			display: flex;
+
+
+			img {
+				margin: auto
+			}
+
+		}
+
+		.infoContainer {
+			width: 100%;
+			height: 160px;
+		}
+	}
 }
+
