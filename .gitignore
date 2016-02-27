@@ -1,5 +1,6 @@
 *.scssc
 *.css
-*.css.map 
-*.js.map
+
+main.css.map
+main.js.map
 node_modules

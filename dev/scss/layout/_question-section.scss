@@ -1,22 +1,29 @@
 .question1,
-.question4 {
+.question3,
+.question5 {
 	background: $etsyOrange;
 }
 
 .question2,
-.question5 {
+.question4 {
 	background: $etsyBlue;
 }
 
-.quesiton3 {
-	background: $etsyGray;
+@for $i from 1 through 6 {
+	.question#{$i} {
+		z-index: #{$i}00;
+		@include position(absolute, 0 0 0 0);
+		display: none;
 
-}
+		@include mq(small) {
+
+		}
+	}
 
 .question {
 	margin: 0;
 	.wrapper {
-		padding: 13rem 0;
+		padding: 7rem 0;
 		@include mq(small) {
 			height: auto;
 			padding: 5rem 1rem;
@@ -25,7 +32,7 @@
 	input[type=radio] {
 		display: none;
 	}
-}
+	}
 .questionHeadingContainer--1 {
 	display:flex;
 	justify-content: space-between;
@@ -62,11 +69,18 @@
 	&--blue {
 		@extend %avatarContainer;
 		border: 1.2rem solid $etsyOrange;
-		order: 2;
+		@include mq(small) {
+			order: -1;
+		}
+
 	}
 	&--orange {
 		@extend %avatarContainer;
 		border: 1.2rem solid $etsyBlue;
+		order: 2;
+			@include mq(small) {
+			order: -1;
+		}
 	}
 }
 
