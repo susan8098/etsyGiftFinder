@@ -16,6 +16,10 @@ etsyApp.url = 'https://openapi.etsy.com/v2';
 etsyApp.userName = null;
 etsyApp.userLocation = null;
 
+//************************************************************************
+//							ETSY APP FUNCTIONS
+//************************************************************************
+
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
 etsyApp.categories = {
 	tech: {
@@ -69,13 +73,13 @@ etsyApp.getEtsyArrays = function() {
 			}).then(function(response) {
 				var items = response.results;
 				etsyApp.results.push(items);
+				etsyApp.createEtsyItems();
 			});
 		});
 }
 
 
 etsyApp.createEtsyItems = function() {
-	etsyApp.getEtsyArrays();
 	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length),
 							Math.floor(Math.random() * etsyApp.playerSearchObject.length),
 							Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
@@ -99,7 +103,7 @@ etsyApp.createEtsyItems = function() {
 				}
 			}
 		}).then(function(response){ 
-			etsyApp.displayItems();
+			etsyApp.displayItems(response, chosenItem);
 		}); //end of ajax call
 		//delete the item from the array
 		etsyApp.results[number].splice(randomNumber, 1);
@@ -107,27 +111,37 @@ etsyApp.createEtsyItems = function() {
 
 }
 
-etsyApp.displayItems = function() {
+etsyApp.displayItems = function(response, chosenItem) {
 	var resultCard = {
 		title: chosenItem.title,
 		image: response.results[0].url_fullxfull,
 		price: chosenItem.price,
 		shopUrl: chosenItem.url
 	};
-
-etsyApp.getKeywords = function() {
-	var selectedCategory = $(this).val();
-	var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
-	var randomKeyword = selectedKeywords[Math.floor(Math.random()* selectedKeywords.length)];
-	etsyApp.playerSearchObject.push(randomKeyword);
-}
-
 	//run the template
 	// ***** Handle Bar Template ***** 
 	var resultCardHtml = $('#itemTemplate').html();
 	var template = Handlebars.compile(resultCardHtml);
 
 	$('.resultContainer').append(template(resultCard) );
+}
+etsyApp.getKeywords = function(button) {
+
+	
+};
+
+//************************************************************************
+//									INTERACTING WITH THE DOM
+//************************************************************************
+etsyApp.showQuestion = function () {
+	$('.question1').fadeIn("slow");
+}
+
+etsyApp.showNextQuestion = function(button) {
+	var desiredParent = $(button).parents(".question");
+	var desiredParentClass = (desiredParent[0].classList[1]);
+	var newQuestionNumber = ".question" + (parseInt(desiredParentClass[8]) + 1);
+	$(newQuestionNumber).fadeIn("slow");
 }
 
 //************************************************************************
@@ -136,14 +150,21 @@ etsyApp.getKeywords = function() {
 //on form submit
 etsyApp.onSubmitAnswers= function() {
 	$('.form-submit-answers').on('submit', function(e) {
+		console.log("success!");
 		//grab three items from each array random
 		e.preventDefault();
-		etsyApp.createEtsyItems();
+		etsyApp.getEtsyArrays();
 	}); //end of on submit
 }
 etsyApp.onRadioClick = function() {
 	$('input[type=radio]').on('click', function() {
-		etsyApp.getKeywords();
+
+		var selectedCategory = $(this).val();
+		var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
+		var randomKeyword = selectedKeywords[Math.floor(Math.random()* selectedKeywords.length)];
+		etsyApp.playerSearchObject.push(randomKeyword);
+
+		etsyApp.showNextQuestion(this);
 	});
 }
 
@@ -151,6 +172,7 @@ etsyApp.onFormStart = function() {
 	$('.form-start').on('submit', function(e) {
 		e.preventDefault();
 		etsyApp.getUserName();
+		etsyApp.showQuestion();
 	}); //end of submit
 }
 

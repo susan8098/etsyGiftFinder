@@ -28,11 +28,17 @@ header {
 	h1 {
 		margin: 0;
 		color: $etsyOrange;
+		@include mq(small) {
+			font-size: 8rem;
+		}
 	}
 
 	h3 {
 		color: $etsyGray;
 		margin: 0;
+		@include mq(small) {
+			font-size: 2rem;
+		}
 	}
 
 	.header-text-title, .header-text-descript {
@@ -113,7 +119,7 @@ label[class^='avatarOption'] {
 	border-radius: 50%;
 
 	@include mq(small) {
-		@include size(18rem);
+		@include size(13rem);
 	}
 }
 

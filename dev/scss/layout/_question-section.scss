@@ -9,18 +9,22 @@
 	background: $etsyBlue;
 }
 
-@for $i from 1 through 5 {
+@for $i from 1 through 6 {
 	.question#{$i} {
 		z-index: #{$i}00;
 		@include position(absolute, 0 0 0 0);
 		display: none;
+
+		@include mq(small) {
+
+		}
 	}
 }
 
 .question {
 	margin: 0;
 	.wrapper {
-		padding: 13rem 0;
+		padding: 7rem 0;
 		@include mq(small) {
 			height: auto;
 			padding: 5rem 1rem;
@@ -29,7 +33,7 @@
 	input[type=radio] {
 		display: none;
 	}
-}
+	}
 .questionHeadingContainer--1 {
 	display:flex;
 	justify-content: space-between;
