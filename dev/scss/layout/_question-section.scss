@@ -11,6 +11,8 @@
 
 @for $i from 1 through 5 {
 	.question#{$i} {
+		z-index: #{$i}00;
+		@include position(absolute, 0 0 0 0);
 		display: none;
 	}
 }
