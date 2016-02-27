@@ -19,7 +19,6 @@
 
 		}
 	}
-}
 
 .question {
 	margin: 0;
@@ -52,7 +51,12 @@
 			width: 100%;
 		}
 	}
+
+	p.black {
+		color: $darkGrey;
+	}
 }
+
 
 %avatarContainer {
 	@include size(20rem);

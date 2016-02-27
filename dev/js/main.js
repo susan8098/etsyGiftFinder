@@ -123,13 +123,14 @@ etsyApp.displayItems = function(response, chosenItem) {
 	var resultCardHtml = $('#itemTemplate').html();
 	var template = Handlebars.compile(resultCardHtml);
 
-	$('.resultContainer').append(template(resultCard) );
+	$('.resultContainer .wrapper').append(template(resultCard) );
 }
 etsyApp.getKeywords = function(button) {
-
-	
+		var selectedCategory = $(button).val();
+		var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
+		var randomKeyword = selectedKeywords[Math.floor(Math.random()* selectedKeywords.length)];
+		etsyApp.playerSearchObject.push(randomKeyword);
 };
-
 //************************************************************************
 //									INTERACTING WITH THE DOM
 //************************************************************************
@@ -159,10 +160,7 @@ etsyApp.onSubmitAnswers= function() {
 etsyApp.onRadioClick = function() {
 	$('input[type=radio]').on('click', function() {
 
-		var selectedCategory = $(this).val();
-		var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
-		var randomKeyword = selectedKeywords[Math.floor(Math.random()* selectedKeywords.length)];
-		etsyApp.playerSearchObject.push(randomKeyword);
+		etsyApp.getKeywords(this);
 
 		etsyApp.showNextQuestion(this);
 	});

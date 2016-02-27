@@ -12,20 +12,19 @@
 
  		<!-- Handlebar Template -->
  		<script id="itemTemplate"type="x-handlebars-template">
- 			<a href="{{shopUrl}}" target="blank">
- 				<div class="itemContainer">
- 					<div class="imgContainer">
- 						<img src="{{image}}" alt="">
- 					</div>
- 					<div class="infoContainer">
- 						<h4>{{title}}</h4>
- 						<p>{{price}}</p>
- 					</div>
- 					</div>
- 				</div>
- 			</a>
+			<div class="itemContainer">
+				<a href="{{shopUrl}}" target="blank">
+					<div class="imgContainer">
+						<img src="{{image}}" alt="">
+					</div>
+					<div class="infoContainer">
+						<h5>{{title}}</h5>
+						<p>{{price}}</p>
+					</div>
+				</a>
+			</div>	
  		</script>
- 		
+
  	</head>
 
  	<body>
@@ -45,13 +44,13 @@
 	 			<form class="form-start">
 	 				<div class="form-start-questionContainer">
 		 				<fieldset class="startForm-fieldset">
-			 				<label for="name">Gift Getter's Name...</label>
-			 				<input class="input-playerName" type="text" id="name">
+			 				<label for="name">Who are you searching a gift for?</label>
+			 				<input class="input-playerName" type="text" id="name" placeholder="Name...">
 						</fieldset>
 
 						<fieldset class="startForm-fieldset">
-			 				<label for="location">Gift Getter's City...</label>
-			 				<input class="input-playerCity" type="text" id="location">
+			 				<label for="location">Find me local goods from...</label>
+			 				<input class="input-playerCity" type="text" id="location" placeholder="City, State">
 						</fieldset>
 					</div>
 
@@ -213,7 +212,7 @@
 			<div class="wrapper">
 		
 				<div class="questionHeadingContainer--1">
-					<p>What book would <span class="reciName"></span> have packed for reading on the flight?</p>
+					<p class="black">What book would <span class="reciName"></span> have packed for reading on the flight?</p>
 
 					<div class="avatarContainer--orange">
 						
@@ -411,7 +410,8 @@
 			</div>
 			</form>
 		<section class="resultContainer">
-			
+			 <div class="wrapper">
+			 </div>
 		</section>
 		</section>
 
