@@ -49,10 +49,10 @@ etsyApp.getUserName = function () {
 	etsyApp.userLocation = $('#location').val();
 };
 
-//results from the quiz pushed into  this object array
+//results (keywords) from the quiz pushed into  this object array
 etsyApp.playerSearchObject = [];
 
-//etsy app array of items
+//items from etsy app call
 etsyApp.results = [];
 
 etsyApp.getEtsyArrays = function () {
@@ -114,7 +114,7 @@ etsyApp.createOneItem = function (itemArray) {
 
 etsyApp.createThreeItems = function () {
 	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-	console.log('run');
+
 	console.log(randomNumberArray);
 	//for each array in etsyApp.results
 	$.each(randomNumberArray, function (i, number) {
@@ -198,7 +198,7 @@ etsyApp.onRadioClick = function () {
 etsyApp.onFormStart = function () {
 	$('.form-start').on('submit', function (e) {
 		e.preventDefault();
-
+		$(this).hide();
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
 	}); //end of submit
