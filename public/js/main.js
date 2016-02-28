@@ -25,10 +25,10 @@ etsyApp.userLocation = null;
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
 etsyApp.categories = {
 	tech: {
-		keywords: ["Audio", "Cameras", "Gadgets", "Decals and Skins", "Cumputers & Peripherals", "Video Games"]
+		keywords: ["Audio", "Cameras", "Gadgets", "Decals and Skins", "VideoGames"]
 	},
 	home: {
-		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "Outdoor & Gardening"]
+		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "HomeAppliances", "Home Decor", "Lighting", "OutdoorGardening"]
 	},
 	fashion: {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks", "messenger bags", "wallets", "hair care", "spa & relaxation"]
@@ -49,10 +49,10 @@ etsyApp.getUserName = function () {
 	etsyApp.userLocation = $('#location').val();
 };
 
-//results from the quiz pushed into  this object array
+//results (keywords) from the quiz pushed into  this object array
 etsyApp.playerSearchObject = [];
 
-//etsy app array of items
+//items from etsy app call
 etsyApp.results = [];
 
 etsyApp.getEtsyArrays = function () {
@@ -62,25 +62,60 @@ etsyApp.getEtsyArrays = function () {
 			method: "GET",
 			dataType: "json",
 			data: {
-				reqUrl: etsyApp.url + "/featured_treasuries/listings",
+				reqUrl: etsyApp.url + "/listings/active/",
 				params: {
 					format: "json",
 					api_key: etsyApp.apiKey,
 					location: etsyApp.userLocation,
-					limit: 50,
+					limit: 100,
 					tags: keyword
 				}
 			}
 		}).then(function (response) {
-			var items = response.results;
+
+			var items = response.results.filter(filterByFavorers);
+			console.log(items);
+			etsyApp.createOneItem(items);
 			etsyApp.results.push(items);
-			etsyApp.createEtsyItems();
 		});
 	});
 };
 
-etsyApp.createEtsyItems = function () {
+function filterByFavorers(obj) {
+	if (obj.num_favorers >= 25) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+etsyApp.createOneItem = function (itemArray) {
+	var randomNumber = Math.floor(Math.random() * itemArray.length);
+	//choose an item using that random number
+	var chosenItem = itemArray[randomNumber];
+	//get the image for the chosen item
+	var chosenItemImage = $.ajax({
+		url: 'http://proxy.hackeryou.com',
+		method: "GET",
+		dataType: "json",
+		data: {
+			reqUrl: etsyApp.url + "/listings/" + chosenItem.listing_id + "/images",
+			params: {
+				format: "json",
+				api_key: etsyApp.apiKey
+			}
+		}
+	}).then(function (response) {
+		console.log(chosenItem);
+		etsyApp.displayItems(response, chosenItem);
+		itemArray.splice(randomNumber, 1);
+	}); //end of ajax call
+};
+
+etsyApp.createThreeItems = function () {
 	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+
+	console.log(randomNumberArray);
 	//for each array in etsyApp.results
 	$.each(randomNumberArray, function (i, number) {
 		//create a random number
@@ -102,9 +137,8 @@ etsyApp.createEtsyItems = function () {
 			}
 		}).then(function (response) {
 			etsyApp.displayItems(response, chosenItem);
+			etsyApp.results[number].splice(randomNumber, 1);
 		}); //end of ajax call
-		//delete the item from the array
-		etsyApp.results[number].splice(randomNumber, 1);
 	}); //end of each
 };
 
@@ -156,9 +190,13 @@ etsyApp.onSubmitAnswers = function () {
 };
 etsyApp.onRadioClick = function () {
 	$('input[type=radio]').on('click', function () {
+<<<<<<< HEAD
 
 		etsyApp.getKeywords(this);
 
+=======
+		etsyApp.getKeywords(this);
+>>>>>>> 87de304669e41e1669ba62e48e80b6eb302a47a7
 		etsyApp.showNextQuestion(this);
 	});
 };
@@ -166,6 +204,7 @@ etsyApp.onRadioClick = function () {
 etsyApp.onFormStart = function () {
 	$('.form-start').on('submit', function (e) {
 		e.preventDefault();
+		$(this).hide();
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
 	}); //end of submit
