@@ -49,10 +49,10 @@ etsyApp.getUserName = function () {
 	etsyApp.userLocation = $('#location').val();
 };
 
-//results from the quiz pushed into  this object array
+//results (keywords) from the quiz pushed into  this object array
 etsyApp.playerSearchObject = [];
 
-//etsy app array of items
+//items from etsy app call
 etsyApp.results = [];
 
 etsyApp.getEtsyArrays = function () {
@@ -80,7 +80,9 @@ etsyApp.getEtsyArrays = function () {
 };
 
 etsyApp.createEtsyItems = function () {
+	// random numbers that get used for displaying results
 	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+	console.log(randomNumberArray);
 	//for each array in etsyApp.results
 	$.each(randomNumberArray, function (i, number) {
 		//create a random number
@@ -120,10 +122,14 @@ etsyApp.displayItems = function (response, chosenItem) {
 	var resultCardHtml = $('#itemTemplate').html();
 	var template = Handlebars.compile(resultCardHtml);
 
-	$('.resultContainer').append(template(resultCard));
+	$('.resultContainer .wrapper').append(template(resultCard));
 };
-etsyApp.getKeywords = function (button) {};
-
+etsyApp.getKeywords = function (button) {
+	var selectedCategory = $(button).val();
+	var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
+	var randomKeyword = selectedKeywords[Math.floor(Math.random() * selectedKeywords.length)];
+	etsyApp.playerSearchObject.push(randomKeyword);
+};
 //************************************************************************
 //									INTERACTING WITH THE DOM
 //************************************************************************
@@ -147,65 +153,13 @@ etsyApp.onSubmitAnswers = function () {
 		console.log("success!");
 		//grab three items from each array random
 		e.preventDefault();
-<<<<<<< HEAD
 		etsyApp.getEtsyArrays();
-=======
-		etsyApp.getEtsyItems();
-		var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-		console.log(randomNumberArray);
-		//for each array in etsyApp.results
-		$.each(randomNumberArray, function (i, number) {
-			//create a random number
-			var randomNumber = Math.floor(Math.random() * etsyApp.results[number].length);
-			//choose an item using that random number
-			var chosenItem = etsyApp.results[number][randomNumber];
-			console.log(chosenItem);
-			//get the image for the chosen item
-			var chosenItemImage = $.ajax({
-				url: 'http://proxy.hackeryou.com',
-				method: "GET",
-				dataType: "json",
-				data: {
-					reqUrl: etsyApp.url + "/listings/" + chosenItem.listing_id + "/images",
-					params: {
-						format: "json",
-						api_key: etsyApp.apiKey
-					}
-				}
-			}).then(function (response) {
-				// console.log(response.results);
-				var title = chosenItem.title;
-				var image = response.results[0].url_fullxfull;
-				var price = chosenItem.price;
-				var shopUrl = chosenItem.url;
-
-				var resultCard = {
-					title: title,
-					image: image,
-					price: price,
-					shopUrl: shopUrl
-				};
-
-				//run the template
-				// ***** Handle Bar Template *****
-				var resultCardHtml = $('#itemTemplate').html();
-				var template = Handlebars.compile(resultCardHtml);
-
-				$('.resultContainer .wrapper').append(template(resultCard));
-			}); //end of ajax call
-			//delete the item from the array
-			etsyApp.results[number].splice(randomNumber, 1);
-		}); //end of each
->>>>>>> dca73cd7e40d55fe826648532affe656998590f9
 	}); //end of on submit
 };
 etsyApp.onRadioClick = function () {
 	$('input[type=radio]').on('click', function () {
 
-		var selectedCategory = $(this).val();
-		var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
-		var randomKeyword = selectedKeywords[Math.floor(Math.random() * selectedKeywords.length)];
-		etsyApp.playerSearchObject.push(randomKeyword);
+		etsyApp.getKeywords(this);
 
 		etsyApp.showNextQuestion(this);
 	});

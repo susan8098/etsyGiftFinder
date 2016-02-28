@@ -36,6 +36,7 @@ etsyApp.categories = {
 	}
 }
 
+
 etsyApp.getUserName = function() {
 		// get the name of the recipient
 		etsyApp.userName = $('#name').val();
@@ -48,10 +49,10 @@ etsyApp.getUserName = function() {
 
 };
 
-//results from the quiz pushed into  this object array
+//results (keywords) from the quiz pushed into  this object array
 etsyApp.playerSearchObject = [];
 
-//etsy app array of items
+//items from etsy app call
 etsyApp.results = [];
 
 etsyApp.getEtsyArrays = function() {
@@ -80,9 +81,11 @@ etsyApp.getEtsyArrays = function() {
 
 
 etsyApp.createEtsyItems = function() {
+	// random numbers that get used for displaying results
 	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length),
 							Math.floor(Math.random() * etsyApp.playerSearchObject.length),
 							Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+	console.log(randomNumberArray);
 	//for each array in etsyApp.results
 	$.each(randomNumberArray, function(i, number) {
 		//create a random number
