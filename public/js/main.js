@@ -25,10 +25,10 @@ etsyApp.userLocation = null;
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
 etsyApp.categories = {
 	tech: {
-		keywords: ["Audio", "Cameras", "Gadgets", "Decals and Skins", "Cumputers & Peripherals", "Video Games"]
+		keywords: ["Audio", "Cameras", "Gadgets", "Decals and Skins", "VideoGames"]
 	},
 	home: {
-		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "Outdoor & Gardening"]
+		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "HomeAppliances", "Home Decor", "Lighting", "OutdoorGardening"]
 	},
 	fashion: {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks", "messenger bags", "wallets", "hair care", "spa & relaxation"]
@@ -62,25 +62,60 @@ etsyApp.getEtsyArrays = function () {
 			method: "GET",
 			dataType: "json",
 			data: {
-				reqUrl: etsyApp.url + "/featured_treasuries/listings",
+				reqUrl: etsyApp.url + "/listings/active/",
 				params: {
 					format: "json",
 					api_key: etsyApp.apiKey,
 					location: etsyApp.userLocation,
-					limit: 50,
+					limit: 100,
 					tags: keyword
 				}
 			}
 		}).then(function (response) {
-			var items = response.results;
+
+			var items = response.results.filter(filterByFavorers);
+			console.log(items);
+			etsyApp.createOneItem(items);
 			etsyApp.results.push(items);
-			etsyApp.createEtsyItems();
 		});
 	});
 };
 
-etsyApp.createEtsyItems = function () {
-	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+function filterByFavorers(obj) {
+	if (obj.num_favorers >= 25) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+etsyApp.createOneItem = function (itemArray) {
+	var randomNumber = Math.floor(Math.random() * itemArray.length);
+	//choose an item using that random number
+	var chosenItem = itemArray[randomNumber];
+	//get the image for the chosen item
+	var chosenItemImage = $.ajax({
+		url: 'http://proxy.hackeryou.com',
+		method: "GET",
+		dataType: "json",
+		data: {
+			reqUrl: etsyApp.url + "/listings/" + chosenItem.listing_id + "/images",
+			params: {
+				format: "json",
+				api_key: etsyApp.apiKey
+			}
+		}
+	}).then(function (response) {
+		console.log(chosenItem);
+		etsyApp.displayItems(response, chosenItem);
+		itemArray.splice(randomNumber, 1);
+	}); //end of ajax call
+};
+
+etsyApp.createThreeItems = function () {
+	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+	console.log('run');
+	console.log(randomNumberArray);
 	//for each array in etsyApp.results
 	$.each(randomNumberArray, function (i, number) {
 		//create a random number
@@ -102,9 +137,8 @@ etsyApp.createEtsyItems = function () {
 			}
 		}).then(function (response) {
 			etsyApp.displayItems(response, chosenItem);
+			etsyApp.results[number].splice(randomNumber, 1);
 		}); //end of ajax call
-		//delete the item from the array
-		etsyApp.results[number].splice(randomNumber, 1);
 	}); //end of each
 };
 
@@ -120,10 +154,14 @@ etsyApp.displayItems = function (response, chosenItem) {
 	var resultCardHtml = $('#itemTemplate').html();
 	var template = Handlebars.compile(resultCardHtml);
 
-	$('.resultContainer').append(template(resultCard));
+	$('.resultContainer .wrapper').append(template(resultCard));
 };
-etsyApp.getKeywords = function (button) {};
-
+etsyApp.getKeywords = function (button) {
+	var selectedCategory = $(button).val();
+	var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
+	var randomKeyword = selectedKeywords[Math.floor(Math.random() * selectedKeywords.length)];
+	etsyApp.playerSearchObject.push(randomKeyword);
+};
 //************************************************************************
 //									INTERACTING WITH THE DOM
 //************************************************************************
@@ -147,66 +185,12 @@ etsyApp.onSubmitAnswers = function () {
 		console.log("success!");
 		//grab three items from each array random
 		e.preventDefault();
-<<<<<<< HEAD
 		etsyApp.getEtsyArrays();
-=======
-		etsyApp.getEtsyItems();
-		var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-		console.log(randomNumberArray);
-		//for each array in etsyApp.results
-		$.each(randomNumberArray, function (i, number) {
-			//create a random number
-			var randomNumber = Math.floor(Math.random() * etsyApp.results[number].length);
-			//choose an item using that random number
-			var chosenItem = etsyApp.results[number][randomNumber];
-			console.log(chosenItem);
-			//get the image for the chosen item
-			var chosenItemImage = $.ajax({
-				url: 'http://proxy.hackeryou.com',
-				method: "GET",
-				dataType: "json",
-				data: {
-					reqUrl: etsyApp.url + "/listings/" + chosenItem.listing_id + "/images",
-					params: {
-						format: "json",
-						api_key: etsyApp.apiKey
-					}
-				}
-			}).then(function (response) {
-				// console.log(response.results);
-				var title = chosenItem.title;
-				var image = response.results[0].url_fullxfull;
-				var price = chosenItem.price;
-				var shopUrl = chosenItem.url;
-
-				var resultCard = {
-					title: title,
-					image: image,
-					price: price,
-					shopUrl: shopUrl
-				};
-
-				//run the template
-				// ***** Handle Bar Template *****
-				var resultCardHtml = $('#itemTemplate').html();
-				var template = Handlebars.compile(resultCardHtml);
-
-				$('.resultContainer .wrapper').append(template(resultCard));
-			}); //end of ajax call
-			//delete the item from the array
-			etsyApp.results[number].splice(randomNumber, 1);
-		}); //end of each
->>>>>>> dca73cd7e40d55fe826648532affe656998590f9
 	}); //end of on submit
 };
 etsyApp.onRadioClick = function () {
 	$('input[type=radio]').on('click', function () {
-
-		var selectedCategory = $(this).val();
-		var selectedKeywords = etsyApp.categories[selectedCategory].keywords;
-		var randomKeyword = selectedKeywords[Math.floor(Math.random() * selectedKeywords.length)];
-		etsyApp.playerSearchObject.push(randomKeyword);
-
+		etsyApp.getKeywords(this);
 		etsyApp.showNextQuestion(this);
 	});
 };
@@ -214,6 +198,7 @@ etsyApp.onRadioClick = function () {
 etsyApp.onFormStart = function () {
 	$('.form-start').on('submit', function (e) {
 		e.preventDefault();
+
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
 	}); //end of submit
