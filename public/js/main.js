@@ -113,11 +113,7 @@ etsyApp.createOneItem = function (itemArray) {
 };
 
 etsyApp.createThreeItems = function () {
-<<<<<<< HEAD
 	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-=======
-	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
->>>>>>> 6d7329459c0c4730a3737db216f80182114b10d0
 
 	console.log(randomNumberArray);
 	//for each array in etsyApp.results
