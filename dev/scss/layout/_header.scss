@@ -68,8 +68,14 @@ header {
 .startForm-avatarContainer {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
+
 	margin-top: 3rem;
 	width: 100%;
+
+	@include mq(small) {
+		justify-content: center;
+	}
 }
 
 .startForm-fieldset {
@@ -87,6 +93,9 @@ header {
 		font-size: 2rem;
 		color: $etsyGray;
 		font-family: $font-family--header;
+		@include mq(small) {
+			font-size: 1.6rem;
+		}
 	}
 }
 
@@ -164,6 +173,7 @@ form.form-start {
 
 	@include mq(small) {
 		align-self: center;
+		margin-left: 0;
 	}
 
 	&:hover {
