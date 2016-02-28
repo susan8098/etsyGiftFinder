@@ -2,6 +2,23 @@
 	text-align: center;
 	background-color: white;
 
+	.wrapper {
+		padding: 1rem;
+	}
+	h3 {
+		color: $etsyOrange;
+	}
+
+	span {
+		color: $etsyBlue;
+	}
+
+	p {
+		font-size: 1.8rem;
+		color: $etsyGray;
+	}
+
+
 	label {
 		display: block;
 		text-align: center;
@@ -20,3 +37,4 @@ input.submit-answers {
 	border: none;
 
 }
+

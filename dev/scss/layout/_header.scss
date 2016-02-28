@@ -67,7 +67,7 @@ header {
 
 .startForm-avatarContainer {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	margin-top: 3rem;
 	width: 100%;
 }
@@ -116,7 +116,7 @@ header {
 }
 
 label[class^='avatarOption'] {
-	@include size( 23rem);
+	@include size(22rem);
 	background: $white;
 	border-radius: 50%;
 
@@ -131,6 +131,7 @@ label[class^='avatarOption'] {
 
 .avatarOption2 {
 	border: 1.2rem solid $etsyBlue;
+	margin-left: 3rem;
 }
 
 input[type="radio"] {
@@ -153,12 +154,25 @@ form.form-start {
 	@include size(22rem 6rem);
 	margin-top: 6rem;
 	font-size: 4rem;
-	color: $etsyBlue;
-	background-color: $grey;
+	color: $white;
+	background-color: $etsyBlue;
 	border: 1px solid #dddddd;
 	align-self: flex-end;
+	margin-left: auto;
+
+	transition: all 0.5s;
 
 	@include mq(small) {
 		align-self: center;
 	}
+
+	&:hover {
+		background-color: $etsyOrange;
+	}
+}
+
+.avatarHeading {
+	padding-left: 1rem;
+	color: $etsyGray;
+	margin-top: 4rem;
 }
