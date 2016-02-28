@@ -4,8 +4,17 @@
 	background: $etsyOrange;
 }
 
+.wrapper1,
+.wrapper3 {
+		background: $etsyOrange;
+}
+
 .question2,
 .question4 {
+	background: $etsyBlue;
+}
+
+.wrapper2 {
 	background: $etsyBlue;
 }
 
@@ -127,7 +136,7 @@ label {
 	text-align: center;
 
 	@include mq(small) {
-		@include size(90% 45rem);
+		@include size(90% auto);
 		margin: auto;
 	}
 

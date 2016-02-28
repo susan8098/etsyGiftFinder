@@ -1,20 +1,48 @@
+.resultArea {
+	display: none;
+}
+
+.resultHeader {
+	background-color: $white;
+	padding: 0;
+}
+
+.resultsHeading {
+	color: $etsyGray;
+	font-size: 6.5rem;
+	align-self: left;
+	margin: 0;
+}
+
+.resultContainer {
+	padding-top: 0;
+	background-color: $grey;
+}
+
 .resultContainer .wrapper {
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: column wrap;
 	justify-content: space-between;
+	padding-top: 0;
+}
+
+.resultsWrapper {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content:space-between;
+	min-height: 50rem;
 }
 
 .itemContainer {
 	margin: 15px 0;
 	width: 30%;
-	background: $grey;
+	background: $white;;
 	text-align: center;
 	padding: 10px;
-	box-shadow: 0 1px 3px lightgrey;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 
 	a {
 		color: $etsyGray;
-
 
 		.imgContainer {
 			background: white;
@@ -35,5 +63,14 @@
 			height: 160px;
 		}
 	}
+
+}
+.showMoreGifts {
+	@include size(100% 6rem);
+	background: $white;
+	border: 1px solid $grey;
+	color: $etsyBlue;
+	box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	font-size: 2rem;
 }
 
