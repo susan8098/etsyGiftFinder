@@ -199,7 +199,7 @@ etsyApp.onRadioClick = function() {
 etsyApp.onFormStart = function() {
 	$('.form-start').on('submit', function(e) {
 		e.preventDefault();
-
+		$(this).hide();
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
 	}); //end of submit

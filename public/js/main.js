@@ -81,11 +81,6 @@ etsyApp.getEtsyArrays = function () {
 	});
 };
 
-<<<<<<< HEAD
-etsyApp.createEtsyItems = function () {
-	// random numbers that get used for displaying results
-	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-=======
 function filterByFavorers(obj) {
 	if (obj.num_favorers >= 25) {
 		return true;
@@ -119,8 +114,7 @@ etsyApp.createOneItem = function (itemArray) {
 
 etsyApp.createThreeItems = function () {
 	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-	console.log('run');
->>>>>>> ee28b78e147e138ea945c6b87d181dc305147d7d
+
 	console.log(randomNumberArray);
 	//for each array in etsyApp.results
 	$.each(randomNumberArray, function (i, number) {
@@ -196,13 +190,7 @@ etsyApp.onSubmitAnswers = function () {
 };
 etsyApp.onRadioClick = function () {
 	$('input[type=radio]').on('click', function () {
-<<<<<<< HEAD
-
 		etsyApp.getKeywords(this);
-
-=======
-		etsyApp.getKeywords(this);
->>>>>>> ee28b78e147e138ea945c6b87d181dc305147d7d
 		etsyApp.showNextQuestion(this);
 	});
 };
@@ -210,7 +198,7 @@ etsyApp.onRadioClick = function () {
 etsyApp.onFormStart = function () {
 	$('.form-start').on('submit', function (e) {
 		e.preventDefault();
-
+		$(this).hide();
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
 	}); //end of submit

@@ -1,4 +1,22 @@
 .submit {
 	text-align: center;
 	background-color: white;
+
+	label {
+		display: block;
+		text-align: center;
+		font-family: $font-family--header;
+		font-size: 1.7rem;
+		color: $etsyBlue;
+	}
+}
+
+input.submit-answers {
+	@include size(17rem);
+	background: white;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url(images/gift.svg);
+	border: none;
+
 }
