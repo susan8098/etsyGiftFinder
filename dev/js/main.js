@@ -36,6 +36,7 @@ etsyApp.categories = {
 	}
 }
 
+
 etsyApp.getUserName = function() {
 		// get the name of the recipient
 		etsyApp.userName = $('#name').val();
@@ -47,10 +48,10 @@ etsyApp.getUserName = function() {
 		etsyApp.userLocation = $('#location').val();	
 };
 
-//results from the quiz pushed into  this object array
+//results (keywords) from the quiz pushed into  this object array
 etsyApp.playerSearchObject = [];
 
-//etsy app array of items
+//items from etsy app call
 etsyApp.results = [];
 
 etsyApp.getEtsyArrays = function() {
