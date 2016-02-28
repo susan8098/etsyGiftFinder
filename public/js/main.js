@@ -28,7 +28,7 @@ etsyApp.categories = {
 		keywords: ["Audio", "Cameras", "Gadgets", "Decals and Skins", "VideoGames"]
 	},
 	home: {
-		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "HomeAppliances", "Home Decor", "Lighting", "OutdoorGardening"]
+		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "OutdoorGardening"]
 	},
 	fashion: {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks", "messenger bags", "wallets", "hair care", "spa & relaxation"]
@@ -176,6 +176,10 @@ etsyApp.showNextQuestion = function (button) {
 	$(newQuestionNumber).fadeIn("slow");
 };
 
+function scrollToBottom() {
+	window.scrollTo(0, document.body.scrollHeight);
+}
+
 //************************************************************************
 //									ON EVENT HANDLERS
 //************************************************************************
@@ -207,6 +211,14 @@ etsyApp.onFormStart = function () {
 	}); //end of submit
 };
 
+etsyApp.showMoreResults = function () {
+	$('.showMoreGifts').on('click', function () {
+		console.log('firing!');
+		etsyApp.createThreeItems();
+		scrollToBottom();
+	});
+};
+
 //************************************************************************
 //									ETSY APP INIT FUNCTION
 //************************************************************************
@@ -214,5 +226,6 @@ etsyApp.init = function () {
 	etsyApp.onFormStart();
 	etsyApp.onRadioClick();
 	etsyApp.onSubmitAnswers();
+	etsyApp.showMoreResults();
 };
 //# sourceMappingURL=main.js.map
