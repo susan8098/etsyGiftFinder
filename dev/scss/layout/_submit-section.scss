@@ -1,4 +1,19 @@
 .submit {
 	text-align: center;
 	background-color: white;
+	.wrapper {
+		padding: 1rem;
+	}
+	h3 {
+		color: $etsyOrange;
+	}
+
+	span {
+		color: $etsyBlue;
+	}
+
+	p {
+		font-size: 1.8rem;
+		color: $etsyGray;
+	}
 }

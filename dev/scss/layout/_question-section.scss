@@ -23,7 +23,7 @@
 .question {
 	margin: 0;
 	.wrapper {
-		padding: 7rem 0;
+		padding: 2rem 0 0 0;
 		@include mq(small) {
 			height: auto;
 			padding: 5rem 1rem;

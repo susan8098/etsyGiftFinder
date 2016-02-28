@@ -113,8 +113,8 @@ etsyApp.createOneItem = function (itemArray) {
 };
 
 etsyApp.createThreeItems = function () {
-	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
-	console.log('run');
+	var randomNumberArray = [Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length), Math.floor(Math.random() * etsyApp.playerSearchObject.length)];
+
 	console.log(randomNumberArray);
 	//for each array in etsyApp.results
 	$.each(randomNumberArray, function (i, number) {
@@ -198,7 +198,7 @@ etsyApp.onRadioClick = function () {
 etsyApp.onFormStart = function () {
 	$('.form-start').on('submit', function (e) {
 		e.preventDefault();
-
+		$(this).hide();
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
 	}); //end of submit
