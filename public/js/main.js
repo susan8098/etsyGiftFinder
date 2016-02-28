@@ -190,13 +190,7 @@ etsyApp.onSubmitAnswers = function () {
 };
 etsyApp.onRadioClick = function () {
 	$('input[type=radio]').on('click', function () {
-<<<<<<< HEAD
-
 		etsyApp.getKeywords(this);
-
-=======
-		etsyApp.getKeywords(this);
->>>>>>> 87de304669e41e1669ba62e48e80b6eb302a47a7
 		etsyApp.showNextQuestion(this);
 	});
 };
