@@ -195,7 +195,6 @@ etsyApp.onSubmitAnswers = function () {
 		console.log("success!");
 		//grab three items from each array random
 		$(this).parents('.submit').hide();
-		$('footer').show();
 		$('.resultArea').show();
 		e.preventDefault();
 		etsyApp.getEtsyArrays();
@@ -205,12 +204,12 @@ etsyApp.onSubmitAnswers = function () {
 				$('.animationWrapper').hide("fast");
 			}
 		}, 1000);
+		$('footer').toggle();
 	}); //end of on submit
 };
 etsyApp.onRadioClick = function () {
 	$('.options input[type=radio]').on('click', function () {
 		$(this).parents('.question').hide();
-		$('footer').hide();
 		etsyApp.getKeywords(this);
 		etsyApp.showNextQuestion(this);
 	});
@@ -222,6 +221,7 @@ etsyApp.onFormStart = function () {
 		$(this).parents('.header').hide();
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
+		$('footer').toggle();
 	}); //end of submit
 };
 
@@ -235,8 +235,8 @@ etsyApp.showMoreResults = function () {
 
 etsyApp.avatarChoice = function () {
 	$('label[class^="avatarOption"]').on('click', function () {
-		$(this).addClass('.selectedAvatar');
-		$(this).siblings().removeClass('.selectedAvatar');
+		$(this).addClass('selectedAvatar');
+		$(this).siblings().removeClass('selectedAvatar');
 		var chosenAvatarValue = $(this).attr("value");
 		var avatarContainers = $('div[class^=avatarContainer');
 		console.log(avatarContainers);
