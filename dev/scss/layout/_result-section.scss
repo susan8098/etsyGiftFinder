@@ -20,6 +20,12 @@
 			display: flex;
 			align-items: center;
 			z-index: $z-index--3;
+
+			@include mq(small) {
+				@include size(8rem);
+				right: 0.5rem;
+				bottom: -5rem;
+			}
 		}
 }
 
@@ -28,6 +34,10 @@
 	font-size: 6.5rem;
 	align-self: left;
 	margin: 0;
+	@include mq(small) {
+		font-size: 4rem;
+		text-align: center;
+	}
 }
 
 .resultContainer {
@@ -106,7 +116,6 @@
 	font-size: 2rem;
 }
 
-<<<<<<< HEAD
 .animationWrapper {
 	@include position(absolute, 0 -1rem 0 -1rem);
 	display: flex;
@@ -118,7 +127,7 @@
 			transform: scale(2);
 	}
 }
-=======
+
 .resultLinks {
 	font-size: 1.5rem;
 
@@ -128,4 +137,3 @@
 	
 }
 
->>>>>>> eb70740a5407386da7d7c2ed79acb864cb046d74
