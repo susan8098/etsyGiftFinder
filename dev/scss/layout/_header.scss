@@ -126,9 +126,9 @@ header {
 
 label[class^='avatarOption'] {
 	@include size(22rem);
-	background: $white;
+	// background: $white;
 	border-radius: 50%;
-
+	position: relative;
 	@include mq(small) {
 		@include size(13rem);
 	}
@@ -136,11 +136,39 @@ label[class^='avatarOption'] {
 
 .avatarOption1 {
 	border: 1.2rem solid $etsyOrange;
+	background: url(./images/1catavatar_playerone.jpg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	&:hover {
+		background-image: url(./images/1catavatar_playerone_hover.jpg);
+	}
+
 }
 
 .avatarOption2 {
 	border: 1.2rem solid $etsyBlue;
 	margin-left: 3rem;
+	background: url(./images/2catavatar_playertwo.jpg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	&:hover {
+		background-image: url(./images/2catavatar_playertwo_hover.jpg);
+	}
+}
+
+.selectedAvatar {
+	transform: scale(2);
+	&::before {
+		content: "";
+		display: block;
+		
+		position: abosolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: rgba(0,0,0,0.5);
+	}
 }
 
 input[type="radio"] {
