@@ -26,7 +26,7 @@ etsyApp.categories = {
 		keywords: ["Audio","Cameras","Gadgets","Decals","VideoGames"]
 	},
 	home: {
-		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "OutdoorGardening"]
+		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "Gardening"]
 	},
 	fashion: {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks","messenger bags", "wallets", "hair care", "spa"]
@@ -34,6 +34,11 @@ etsyApp.categories = {
 	leisure: {
 		keywords: ["drawing", "prints", "Drawings", "spa", "skin care", "collectibles", "movies", "books"]
 	}
+}
+
+var etsyAppAvatarsSources = {
+	avatar1: ["css/images/3catavatar_playerone.jpg", "css/images/8catavatar_playerone.jpg", "css/images/13catavatar_playerone.jpg", "css/images/18catavatar_playerone.jpg"],
+	avatar2: ["css/images/3catavatar_playertwo.jpg", "css/images/8catavatar_playertwo.jpg", "css/images/13catavatar_playertwo.jpg", "css/images/18catavatar_playertwo.jpg"]
 }
 
 
@@ -198,10 +203,16 @@ etsyApp.onSubmitAnswers= function() {
 		$('.resultArea').show();
 		e.preventDefault();
 		etsyApp.getEtsyArrays();
+		setInterval(function() {
+		console.log($(".resultsWrapper").children.length);
+			if($('.resultsWrapper')[0].children.length >= 3) {
+				$('.animationWrapper').hide("fast");
+			}
+		}, 1000); 
 	}); //end of on submit
 }
 etsyApp.onRadioClick = function() {
-	$('input[type=radio]').on('click', function() {
+	$('.options input[type=radio]').on('click', function() {
 		$(this).parents('.question').hide();
 		$('footer').hide();
 		etsyApp.getKeywords(this);
@@ -230,9 +241,15 @@ etsyApp.avatarChoice = function(){
    $('label[class^="avatarOption"]').on('click', function(){
        $(this).addClass('.selectedAvatar');
        $(this).siblings().removeClass('.selectedAvatar');
-       var avatarImgSrc = $(this).css("background-image");
-       console.log(avatarImgSrc);
-       $('div[class^=avatarContainer').css("background-image", avatarImgSrc);
+       var chosenAvatarValue = $(this).attr("value");
+       var avatarContainers = $('div[class^=avatarContainer');
+       console.log(avatarContainers);
+       console.log(chosenAvatarValue);
+       $.each(avatarContainers, function(i, container) {
+       	$(container).html("<img src='" + etsyAppAvatarsSources[chosenAvatarValue][i] + "'>");
+       	console.log(this);
+       	console.log(etsyAppAvatarsSources[chosenAvatarValue][i]);
+       });
    });
 };
 
