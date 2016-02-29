@@ -189,6 +189,7 @@ etsyApp.onSubmitAnswers = function () {
 		console.log("success!");
 		//grab three items from each array random
 		$(this).parents('.submit').hide();
+		$('footer').show();
 		$('.resultArea').show();
 		e.preventDefault();
 		etsyApp.getEtsyArrays();
@@ -197,6 +198,7 @@ etsyApp.onSubmitAnswers = function () {
 etsyApp.onRadioClick = function () {
 	$('input[type=radio]').on('click', function () {
 		$(this).parents('.question').hide();
+		$('footer').hide();
 		etsyApp.getKeywords(this);
 		etsyApp.showNextQuestion(this);
 	});

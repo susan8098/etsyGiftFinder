@@ -1,5 +1,6 @@
 .resultArea {
 	display: none;
+	padding: 0;
 }
 
 .resultHeader {
@@ -17,13 +18,14 @@
 .resultContainer {
 	padding-top: 0;
 	background-color: $grey;
+	text-align: center;
 }
 
 .resultContainer .wrapper {
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: space-between;
-	padding-top: 0;
+	padding: 0;
 }
 
 .resultsWrapper {
@@ -80,3 +82,13 @@
 	box-shadow: 0 0 4px rgba(0,0,0,0.5);
 	font-size: 2rem;
 }
+
+.resultLinks {
+	font-size: 1.5rem;
+
+	a {
+		color: $etsyGray;
+	}
+	
+}
+
