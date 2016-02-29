@@ -73,7 +73,8 @@
 %avatarContainer {
 	@include size(20rem);
 	border-radius: 50%;
-	background-color: $white;
+	background-size: cover;
+	background-repeat: no-repeat;
 	order: -1;
 }
 
@@ -157,3 +158,5 @@ label {
 	}
 }
 }
+
+

@@ -195,7 +195,7 @@ etsyApp.onSubmitAnswers = function () {
 	}); //end of on submit
 };
 etsyApp.onRadioClick = function () {
-	$('input[type=radio]').on('click', function () {
+	$('.options input[type=radio]').on('click', function () {
 		$(this).parents('.question').hide();
 		etsyApp.getKeywords(this);
 		etsyApp.showNextQuestion(this);
@@ -219,6 +219,16 @@ etsyApp.showMoreResults = function () {
 	});
 };
 
+etsyApp.avatarChoice = function () {
+	$('label[class^="avatarOption"]').on('click', function () {
+		$(this).addClass('.selectedAvatar');
+		$(this).siblings().removeClass('.selectedAvatar');
+		var avatarImgSrc = $(this).css("background-image");
+		console.log(avatarImgSrc);
+		$('div[class^=avatarContainer').css("background-image", avatarImgSrc);
+	});
+};
+
 //************************************************************************
 //									ETSY APP INIT FUNCTION
 //************************************************************************
@@ -227,5 +237,6 @@ etsyApp.init = function () {
 	etsyApp.onRadioClick();
 	etsyApp.onSubmitAnswers();
 	etsyApp.showMoreResults();
+	etsyApp.avatarChoice();
 };
 //# sourceMappingURL=main.js.map
