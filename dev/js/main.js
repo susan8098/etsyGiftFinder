@@ -186,6 +186,8 @@ function scrollToBottom() {
 //************************************************************************
 //									ON EVENT HANDLERS
 //************************************************************************
+
+
 //on form submit
 etsyApp.onSubmitAnswers= function() {
 	$('.form-submit-answers').on('submit', function(e) {
