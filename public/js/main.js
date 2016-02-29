@@ -25,13 +25,13 @@ etsyApp.userLocation = null;
 // We have 4 categories of Etsy Products: Tech, Apprel, Home, Leisure/Craft
 etsyApp.categories = {
 	tech: {
-		keywords: ["Audio", "Cameras", "Gadgets", "Decals and Skins", "VideoGames"]
+		keywords: ["Audio", "Cameras", "Gadgets", "Decals", "VideoGames"]
 	},
 	home: {
 		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "OutdoorGardening"]
 	},
 	fashion: {
-		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks", "messenger bags", "wallets", "hair care", "spa & relaxation"]
+		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks", "messenger bags", "wallets", "hair care", "spa"]
 	},
 	leisure: {
 		keywords: ["drawing", "prints", "Drawings", "spa", "skin care", "collectibles", "movies", "books"]
@@ -183,6 +183,7 @@ function scrollToBottom() {
 //************************************************************************
 //									ON EVENT HANDLERS
 //************************************************************************
+
 //on form submit
 etsyApp.onSubmitAnswers = function () {
 	$('.form-submit-answers').on('submit', function (e) {
@@ -195,7 +196,7 @@ etsyApp.onSubmitAnswers = function () {
 	}); //end of on submit
 };
 etsyApp.onRadioClick = function () {
-	$('.options input[type=radio]').on('click', function () {
+	$('input[type=radio]').on('click', function () {
 		$(this).parents('.question').hide();
 		etsyApp.getKeywords(this);
 		etsyApp.showNextQuestion(this);

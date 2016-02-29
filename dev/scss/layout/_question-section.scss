@@ -75,6 +75,7 @@
 	border-radius: 50%;
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-color: $white;
 	order: -1;
 }
 
@@ -129,7 +130,7 @@ label {
 }
 
 .square-answers {
-	@include size(100% 29rem);
+	@include size(100% 36rem);
 	margin-top: 30px;
 	background: white;
 	padding: 10px;
@@ -143,20 +144,22 @@ label {
 
 	.answers-img-container {
 		position: relative;
-	}
 
+		img {
+			height: 27rem;
+		}
+	}
+tr
 	.answers-text {
 		color: $etsyGray;
 	}
 
 	.answers-img-overlay {
 		@include position(absolute, 0 0 0 0);
-		background-color: rgba(0,0,0,0.5);
+		background-color: transparentize($etsyOrange, 0.9);
 		opacity: 0;
 		transition: all 0.5s;
 		z-index: $z-index--2;
 	}
 }
 }
-
-
