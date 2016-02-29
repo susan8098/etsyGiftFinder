@@ -26,7 +26,7 @@ etsyApp.categories = {
 		keywords: ["Audio","Cameras","Gadgets","Decals and Skins","VideoGames"]
 	},
 	home: {
-		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "HomeAppliances", "Home Decor", "Lighting", "OutdoorGardening"]
+		keywords: ["Painting", "Photography", "Sculpture", "candles", "Bathroom", "Bedding", "Furniture", "Home Appliances", "Home Decor", "Lighting", "OutdoorGardening"]
 	},
 	fashion: {
 		keywords: ["mittens", "scarves", "caps", "sunglasses", "eyewear", "backpacks","messenger bags", "wallets", "hair care", "spa & relaxation"]
@@ -157,7 +157,7 @@ etsyApp.displayItems = function(response, chosenItem) {
 	var resultCardHtml = $('#itemTemplate').html();
 	var template = Handlebars.compile(resultCardHtml);
 
-	$('.resultContainer .wrapper').append(template(resultCard) );
+	$('.resultContainer .resultsWrapper').append(template(resultCard) );
 }
 etsyApp.getKeywords = function(button) {
 		var selectedCategory = $(button).val();
@@ -179,6 +179,10 @@ etsyApp.showNextQuestion = function(button) {
 	$(newQuestionNumber).fadeIn("slow");
 }
 
+function scrollToBottom() {
+	window.scrollTo(0,document.body.scrollHeight);
+}
+
 //************************************************************************
 //									ON EVENT HANDLERS
 //************************************************************************
@@ -187,12 +191,15 @@ etsyApp.onSubmitAnswers= function() {
 	$('.form-submit-answers').on('submit', function(e) {
 		console.log("success!");
 		//grab three items from each array random
+		$(this).parents('.submit').hide();
+		$('.resultArea').show();
 		e.preventDefault();
 		etsyApp.getEtsyArrays();
 	}); //end of on submit
 }
 etsyApp.onRadioClick = function() {
 	$('input[type=radio]').on('click', function() {
+		$(this).parents('.question').hide();
 		etsyApp.getKeywords(this);
 		etsyApp.showNextQuestion(this);
 	});
@@ -201,10 +208,18 @@ etsyApp.onRadioClick = function() {
 etsyApp.onFormStart = function() {
 	$('.form-start').on('submit', function(e) {
 		e.preventDefault();
-		$(this).hide();
+		$(this).parents('.header').hide();
 		etsyApp.getUserName();
 		etsyApp.showQuestion();
 	}); //end of submit
+}
+
+etsyApp.showMoreResults = function() {
+	$('.showMoreGifts').on('click', function() {
+		console.log('firing!');
+		etsyApp.createThreeItems();
+		scrollToBottom();
+	});
 }
 
 //************************************************************************
@@ -214,4 +229,5 @@ etsyApp.init = function() {
 	etsyApp.onFormStart();
 	etsyApp.onRadioClick();
 	etsyApp.onSubmitAnswers();
+	etsyApp.showMoreResults();
 }
