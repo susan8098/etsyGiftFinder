@@ -1,0 +1,17 @@
+
+footer {
+	background: $darkGrey;
+	text-align: center;
+	padding: 15px;
+	color: $etsyGray;
+	
+	p {
+		font-size: 1.3em;
+		letter-spacing: 1.1px;	
+		margin: 0;
+	}
+
+	a, a:visited {
+		color: $etsyOrange;
+	}
+}

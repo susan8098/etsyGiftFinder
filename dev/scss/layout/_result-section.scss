@@ -1,5 +1,6 @@
 .resultArea {
 	display: none;
+	padding: 0;
 }
 
 .resultHeader {
@@ -32,6 +33,7 @@
 .resultContainer {
 	padding-top: 0;
 	background-color: $grey;
+	text-align: center;
 }
 
 .resultContainer .wrapper {
@@ -104,6 +106,7 @@
 	font-size: 2rem;
 }
 
+<<<<<<< HEAD
 .animationWrapper {
 	@include position(absolute, 0 -1rem 0 -1rem);
 	display: flex;
@@ -115,3 +118,14 @@
 			transform: scale(2);
 	}
 }
+=======
+.resultLinks {
+	font-size: 1.5rem;
+
+	a {
+		color: $etsyGray;
+	}
+	
+}
+
+>>>>>>> eb70740a5407386da7d7c2ed79acb864cb046d74
