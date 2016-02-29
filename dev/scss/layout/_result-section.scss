@@ -6,6 +6,27 @@
 .resultHeader {
 	background-color: $white;
 	padding: 0;
+	position: relative;
+
+		.avatarContainer--orange {
+			position: absolute;
+			border: 10px solid $etsyOrange;
+			background-color: $white;
+			border-radius: 50%;
+			right: 10rem;
+			bottom: -8rem;
+			@include size(17rem);
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			z-index: $z-index--3;
+
+			@include mq(small) {
+				@include size(8rem);
+				right: 0.5rem;
+				bottom: -5rem;
+			}
+		}
 }
 
 .resultsHeading {
@@ -13,6 +34,10 @@
 	font-size: 6.5rem;
 	align-self: left;
 	margin: 0;
+	@include mq(small) {
+		font-size: 4rem;
+		text-align: center;
+	}
 }
 
 .resultContainer {
@@ -25,7 +50,8 @@
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: space-between;
-	padding: 0;
+	padding-top: 0;
+	position: relative;
 }
 
 .resultsWrapper {
@@ -88,6 +114,18 @@
 	color: $etsyBlue;
 	box-shadow: 0 0 4px rgba(0,0,0,0.5);
 	font-size: 2rem;
+}
+
+.animationWrapper {
+	@include position(absolute, 0 -1rem 0 -1rem);
+	display: flex;
+	align-items: center;
+	background-color: $grey;
+	z-index: $z-index--2;
+
+	.sk-folding-cube {
+			transform: scale(2);
+	}
 }
 
 .resultLinks {
